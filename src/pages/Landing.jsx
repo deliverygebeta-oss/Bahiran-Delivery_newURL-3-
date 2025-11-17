@@ -277,7 +277,7 @@ const Landing = () => {
       <div className={`overflow-hidden border-2 h-[800px] relative bg-cover bg-center hidden md:block w-${width}`} >
         {/* First Rotating Wheel */}
         <div
-          className="z-0 border-separate border-2 border-black p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-700 bg-[#333] absolute md:-left-[595px] md:-top-[55px] rounded-full"
+          className="z-0 border-separate border-2  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-700 bg-[#c0610f]  absolute md:-left-[595px] md:-top-[55px] rounded-full"
           style={{ transform: `rotate(${rotate}deg)` }}
         >
           <div className="flex justify-between gap-x-44">
@@ -308,7 +308,7 @@ const Landing = () => {
 
         {/* Second Rotating Wheel (reversed order for effect) */}
         <div
-          className="z-0 border-separate border-2 border-black p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-700 bg-[#333] absolute md:-right-[595px] md:-top-[55px] rounded-full"
+          className="z-0 border-separate border-2 border-black p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-700 bg-[#ffffff] absolute md:-right-[595px] md:-top-[55px] rounded-full"
           style={{ transform: `rotate(${rotate}deg)` }}
         >
           <div className="flex justify-between gap-44">
