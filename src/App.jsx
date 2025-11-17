@@ -15,6 +15,8 @@ import useUserStore from "./Store/UseStore";
 import MoneyFlow from "./pages/A-DemoPages/A-analytics";
 import { useOrderFetcher } from "./services/OrderPollingService";
 import FirstLogin from "./components/firstLogin";
+import AllFoods from "./components/VPLocation/allFoods";
+// import CL from "./components/VPLocation/CL";
 
 function App() {
   const { user } = useUserStore();
@@ -37,6 +39,7 @@ function App() {
         <Routes>
 
           <Route path="/" element={<Landing />} />
+          <Route path="/CL" element={<AllFoods />} />
           <Route path="/firstLogin" element={<FirstLogin />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
