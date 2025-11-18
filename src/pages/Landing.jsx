@@ -13,7 +13,7 @@ import AllFoods from "../components/VPLocation/allFoods";
 // Constants for scroll thresholds (abstracted from hardcoded values)
 const NAV_SCROLL_THRESHOLD = 100;
 const CARDS_SCROLL_THRESHOLD = 400;
-const CARDS_APPEARANCE_THRESHOLD = 430;
+const CARDS_APPEARANCE_THRESHOLD = 390;
 
 // Animation configurations for restaurant cards
 const CARD_ANIMATIONS = [
@@ -73,7 +73,7 @@ const Landing = () => {
       relative overflow-hidden cursor-pointer
       shadow-lg z-20
       after:absolute after:h-full after:w-full after:inset-0 after:rounded-lg
-      after:bg-[rgba(126,70,35,0.5)] after:-z-20
+      after:bg-[rgba(126,70,35,0.9)] after:-z-20
       after:-translate-y-full after:transition-all after:duration-500
       after:hover:translate-y-0
       active:Hover:text
@@ -227,13 +227,13 @@ const Landing = () => {
               Featured Restaurants
             </h2>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 ${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
-              <div className={getCardClasses(0) + `${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[121%] motion-translate-y-in-[-47%]" : "opacity-0"} transition-opacity duration-300`}>
+              <div className={getCardClasses(0) + `${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[121%] motion-translate-y-in-[-47%]" : "opacity-0"} border border-[#905618] transition-opacity duration-300`}>
                 <img
-                  src="https://placehold.co/600x400/FFF/000?text=Restaurant+1"
+                  src={foodImages[0]}
                   alt="Placeholder for Gourmet Grills"
                   className="w-full h-48 object-cover rounded-lg"
                 />
-                <div className="p-6 group-hover:text-white transition-colors duration-300">
+                <div className="p-6 group-hover:text-white transition-colors duration-300 ">
                   <h3 className="text-xl font-bold mb-2 group-hover:text-white">Gourmet Grills</h3>
                   <p className="text-gray-600 mb-4 group-hover:text-white">A modern twist on classic comfort food.</p>
                   <div className="flex items-center text-yellow-500">
@@ -243,9 +243,9 @@ const Landing = () => {
                   </div>
                 </div>
               </div>
-              <div className={getCardClasses(1) + `${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[128%] motion-translate-y-in-[139%]" : "opacity-0"} transition-opacity duration-300`}>
+              <div className={getCardClasses(1) + ` ${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[%] motion-translate-y-in-[200%]" : "opacity-0"} transition-opacity duration-300 border border-[#905618]`}>
                 <img
-                  src="https://placehold.co/600x400/FFF/000?text=Restaurant+2"
+                  src={foodImages[1]}
                   alt="Placeholder for Spicy Spoon"
                   className="w-full h-48 object-cover rounded-lg"
                 />
@@ -259,9 +259,9 @@ const Landing = () => {
                   </div>
                 </div>
               </div>
-              <div className={getCardClasses(2) + `${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[121%] motion-translate-y-in-[-47%]" : "opacity-0"} transition-opacity duration-300`}>
+              <div className={getCardClasses(2) + `${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[121%] motion-translate-y-in-[-47%]" : "opacity-0"} transition-opacity duration-300 border border-[#905618]`}>
                 <img
-                  src="https://placehold.co/600x400/FFF/000?text=Restaurant+3"
+                  src={foodImages[2]}
                   alt="Placeholder for The Vegan Corner"
                   className="w-full h-48 object-cover rounded-lg"
                 />
