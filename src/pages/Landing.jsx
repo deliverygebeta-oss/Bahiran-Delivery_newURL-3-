@@ -73,7 +73,7 @@ const Landing = () => {
       relative overflow-hidden cursor-pointer
       shadow-lg z-20
       after:absolute after:h-full after:w-full after:inset-0 after:rounded-lg
-      after:bg-[#7E4623] after:-z-20
+      after:bg-[rgba(126,70,35,0.5)] after:-z-20
       after:-translate-y-full after:transition-all after:duration-500
       after:hover:translate-y-0
       active:Hover:text
@@ -284,68 +284,68 @@ const Landing = () => {
         <ParallaxBackground backgroundImage="src/assets/images/p.png" />
 
         {/* Rotating Images Container */}
-        <div className={`overflow-hidden border-2 h-[800px] bg-[#f4f1e9] relative bg-cover bg-center hidden md:block w-${width} z-0`} >
+        <div className={`overflow-hidden border-2 h-[400px] bg-[#f4f1e9] relative bg-cover bg-center hidden md:block w-${width} z-0 `} >
           {/* First Rotating Wheel */}
           <div
-            className=" border-separate border-2  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-left-[595px] md:-top-[55px] rounded-full z-10"
+            className=" border-separate border-2  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-left-[500px] md:-top-[130px] rounded-full z-10 "
             style={{ transform: `rotate(${rotate}deg)` }}
           >
-            <div className="flex justify-between gap-x-44 z-50">
+            <div className="flex justify-between gap-x-44 z-50 ">
               <img
                 src={foodImages[0]}
                 alt="Food Image 1"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3"
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3"
               />
               <img
                 src={foodImages[1]}
                 alt="Food Image 2"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3"
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3"
               />
             </div>
             <div className="flex justify-between gap-44 z-50">
               <img
                 src={foodImages[2]}
                 alt="Food Image 3"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3"
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3  "
               />
               <img
                 src={foodImages[3]}
                 alt="Food Image 4"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3"
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3  "
               />
             </div>
           </div>
-          <div className="flex self-center justify-self-center md:translate-y-20 p-14 -z-500 ">
+          <div className="flex self-center justify-self-center md:-translate-y-28 md:-translate-x-5 pt-14 -z-500 overflow-auto md:max-w-6xl mx-auto">
 
             <AllFoods />
           </div>
           {/* Second Rotating Wheel (reversed order for effect) */}
           <div
-            className="z-0 border-separate p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c] absolute md:-right-[595px] md:-top-[55px] rounded-full"
+            className=" border-separate border-2  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-right-[500px] md:-top-[130px] rounded-full z-10 "
             style={{ transform: `rotate(${rotate}deg)` }}
           >
             <div className="flex justify-between gap-44">
               <img
                 src={foodImages[3]}
                 alt="Food Image 4"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3z  "
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3z  "
               />
               <img
                 src={foodImages[2]}
                 alt="Food Image 3"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3"
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3"
               />
             </div>
             <div className="flex justify-between gap-x-44">
               <img
                 src={foodImages[1]}
                 alt="Food Image 2"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3"
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3"
               />
               <img
                 src={foodImages[0]}
                 alt="Food Image 1"
-                className="rotate-180 h-[300px] w-[300px] object-cover transition-all duration-530 m-3"
+                className="rotate-180 h-[200px] w-[200px] object-cover transition-all duration-530 m-3"
               />
             </div>
           </div>
@@ -354,7 +354,7 @@ const Landing = () => {
         <ParallaxBackground backgroundImage="src/assets/images/p.png" />
 
         {/* About / Why Gebeታ Section */}
-        <section id="about" className="relative py-16 bg-[#f4f1e9] overflow-hidden z-50">
+        <section id="about" className="relative py-16 bg-[#f4f1e9] overflow-hidden z-40">
           {/* Decorative gradient blobs */}
           <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-[#f4f1e9] to-[#f8f6f0] blur-3xl opacity-70" />
           <div className="pointer-events-none absolute -right-24 -bottom-24 h-80 w-80 rounded-full bg-gradient-to-br from-[#f1d59b] to-[#e0cda9] blur-3xl opacity-60" />

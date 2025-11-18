@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ImagePlus } from "lucide-react";
 import useUserStore from "../../Store/UseStore";
 
 const AddFood = ({ menuId }) => {
@@ -195,18 +196,27 @@ const AddFood = ({ menuId }) => {
           />
         </div> */}
 
-        <div>
-          <label className="block text-sm font-medium text-[#4b382a] mb-1">
+        {/* <div className=" p-2 flex items-end justify-end">
+          {/* <label className="block text-sm font-medium text-[#4b382a] mb-1">
             Image Cover
-          </label>
+          </label> 
           <input
+            id="imageCover"
             type="file"
             accept="image/*"
             name="imageCover"
             onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4b382a]"
+            className="sr-only"
           />
-        </div>
+          <label
+            htmlFor="imageCover"
+            className="inline-flex  items-center justify-center w-20 h-10 rounded-md text-white bg-[#905618]  hover:bg-[#5f3716] cursor-pointer transition-colors"
+            title="Upload image"
+            aria-label="Upload image"
+          >
+            <ImagePlus size={18} />
+          </label>
+        </div> */}
 
         {/* <div className="flex flex-col sm:flex-row gap-4 items-center">
           <div className="flex-1">
@@ -252,7 +262,7 @@ const AddFood = ({ menuId }) => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#905618] text-white py-2 px-4 rounded-md hover:bg-[#3d2e22] focus:outline-none focus:ring-2 focus:ring-[#4b382a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-[#905618] text-white py-2 px-4 rounded-md hover:bg-[#3d2e22] focus:outline-none focus:ring-2 focus:ring-[#4b382a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex justify-center items-center"
         >
           {loading ? "Adding..." : "Add Food Item"}
         </button>
@@ -274,6 +284,27 @@ const AddFood = ({ menuId }) => {
               <span className="text-lg text-center"> Recommended image size is 1:1 (100x100)</span>
           </div>
         )}
+        <div className=" p-2 flex items-end justify-end">
+          {/* <label className="block text-sm font-medium text-[#4b382a] mb-1">
+            Image Cover
+          </label> */}
+          <input
+            id="imageCover"
+            type="file"
+            accept="image/*"
+            name="imageCover"
+            onChange={handleInputChange}
+            className="sr-only"
+          />
+          <label
+            htmlFor="imageCover"
+            className="inline-flex  items-center justify-center w-20 h-10 rounded-md text-white bg-[#905618]  hover:bg-[#5f3716] cursor-pointer transition-colors"
+            title="Upload image"
+            aria-label="Upload image"
+          >
+            <ImagePlus size={18} />
+          </label>
+        </div>
       </div>
     </div>
     <div className="flex justify-center items-center gap-4 h-[50px] pt-2">

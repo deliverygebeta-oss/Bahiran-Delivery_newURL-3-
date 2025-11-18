@@ -53,7 +53,7 @@ const FirstLogin = () => {
 
                 try {
                     const res = await fetch(
-                        `https://gebeta-delivery1.onrender.com/api/v1/restaurants/${restaurantId}`,
+                        `https://gebeta-delivery1.onrender.com/api/v1/restaurants/location/${restaurantId}`,
                         {
                             method: "PATCH",
                             headers: {

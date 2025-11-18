@@ -109,7 +109,7 @@ const AnimatedCircles = () => {
           key={circle.id}
           className={`absolute rounded-full transition-opacity duration-1000 ease-in-out ${
             circle.color
-          } ${circle.isVisible ? 'opacity-60 motion-preset-oscillate motion-duration-2000' : 'opacity-0 '}`}
+          } ${circle.isVisible ? 'opacity-60 motion-preset-oscillate motion-duration-2000' : 'opacity-0  '}`}
           style={{
             width: `${circle.size}px`,
             height: `${circle.size}px`,
