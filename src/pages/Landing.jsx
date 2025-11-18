@@ -316,7 +316,7 @@ const Landing = () => {
               />
             </div>
           </div>
-          <div className="flex w-[100%] self-center justify-self-center md:-translate-y-6 m pt-14 -z-500 overflow-auto md:max-w-6xl mx-auto">
+          <div className="flex w-[100%] self-center justify-self-center md:translate-y-6 m  -z-500 overflow-auto md:max-w-6xl mx-auto">
 
             <AllFoods />
           </div>

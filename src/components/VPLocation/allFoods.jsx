@@ -113,14 +113,14 @@ const AllFoods = () => {
                 {/* Scroll Container */}
                 <div
                     ref={scrollRef}
-                    className="flex overflow-x-hidden scrollbar-hide space-x-6   w-[3300px] "
+                    className="flex overflow-x-hidden scrollbar-hide space-x-6  p-5 w-[3300px] "
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                     {duplicatedFoods.map((food, i) => (
                         <div key={`${food._id}-${i}`} className="flex-shrink-0 w-[280px]">
-                            <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-[#e0cda9] to-[#f1d59b] shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-[#e0cda9] to-[#f1d59b]  hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                                 <div className="bg-white rounded-2xl overflow-hidden h-full flex flex-col">
 
                                     <img
