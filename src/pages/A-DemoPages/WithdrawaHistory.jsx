@@ -28,6 +28,9 @@ const WithdrawalHistory = () => {
     };
 
     const getUserId = (item) => {
+        if (String(requesterType).toLowerCase() === 'restaurant') {
+            return item?.restaurantId?._id || item?.restaurantId?.id || item?.restaurantId || null;
+        }
         return item?.deliveryId?._id || item?.delivery?._id || item?.deliveryId || item?.delivery || null;
     };
 
@@ -62,6 +65,7 @@ const WithdrawalHistory = () => {
                     throw new Error('Failed to fetch withdrawal history');
                 }
                 const result = await response.json();
+                console.log(result);
                 if (result.status === 'success' && Array.isArray(result.data)) {
                     // Sort by createdAt descending
                     const sortedData = result.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -104,7 +108,7 @@ const WithdrawalHistory = () => {
                     <div className="md:h-[500px]  overflow-y-auto">
 
                     <div className="flex items-center justify-between mb-4 lg:w-[1000px] ">
-                        <h1 className="text-xl font-semibold">Withdrawal History</h1>
+                        <h1 className="text-xl font-semibold">{requesterType}</h1>
                         <span className=" flex items-center gap-2">
                             <button
                                 className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200"
@@ -135,7 +139,7 @@ const WithdrawalHistory = () => {
                                             Date
                                         </th>
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Delivery Person
+                                            {requesterType === 'Restaurant' ? 'Restaurant' : 'Delivery Person'}
                                         </th>
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Amount
@@ -152,9 +156,13 @@ const WithdrawalHistory = () => {
                                     {groupedData.map(({ userId, latest, rest }) => {
                                         const amount = parseDecimal(latest.amount).toLocaleString();
                                         const fee = parseDecimal(latest.fee).toLocaleString();
+                                        const isRestaurant = String(requesterType).toLowerCase() === 'restaurant';
+                                        const restaurantName = latest?.restaurantId?.name || '';
                                         const firstName = latest?.deliveryId?.firstName || latest?.delivery?.firstName || '';
                                         const lastName = latest?.deliveryId?.lastName || latest?.delivery?.lastName || '';
-                                        const fullName = `${firstName} ${lastName}`.trim() || 'N/A';
+                                        const fullName = isRestaurant
+                                            ? (restaurantName || 'N/A')
+                                            : (`${firstName} ${lastName}`.trim() || 'N/A');
                                         const date = new Date(latest.createdAt).toLocaleDateString('en-US', {
                                             year: 'numeric',
                                             month: 'short',
@@ -171,14 +179,24 @@ const WithdrawalHistory = () => {
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap">
                                                         <div className="flex items-center">
-                                                            <img
-                                                                className="h-8 w-8 rounded-full object-cover"
-                                                                src={latest?.deliveryId?.profilePicture || latest?.delivery?.profilePicture || 'https://placehold.co/64x64?text=DP'}
-                                                                alt={fullName}
-                                                            />
+                                                            {isRestaurant ? (
+                                                                <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-600">
+                                                                    {String(fullName || 'R').charAt(0)}
+                                                                </div>
+                                                            ) : (
+                                                                <img
+                                                                    className="h-8 w-8 rounded-full object-cover"
+                                                                    src={latest?.deliveryId?.profilePicture || latest?.delivery?.profilePicture || 'https://placehold.co/64x64?text=DP'}
+                                                                    alt={fullName}
+                                                                />
+                                                            )}
                                                             <div className="ml-3">
                                                                 <div className="text-sm font-medium text-gray-900">{fullName}</div>
-                                                                <div className="text-sm text-gray-500">{latest?.deliveryId?.phone || latest?.delivery?.phone || ''}</div>
+                                                                {/* <div className="text-sm text-gray-500">
+                                                                    {isRestaurant
+                                                                        ? (latest?.restaurantId?._id || latest?.restaurantId?.id || '')
+                                                                        : (latest?.deliveryId?.phone || latest?.delivery?.phone || '')}
+                                                                </div> */}
                                                                 {rest.length > 0 && (
                                                                     <button
                                                                         onClick={() => setExpanded((prev) => ({ ...prev, [userId]: !prev[userId] }))}

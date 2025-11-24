@@ -148,7 +148,7 @@ const InfoCards = () => {
             <div className="flex flex-col items-start  md:w-[150px]">
             <div>{item.icon}</div>
             <h1 className="font-semibold">{item.label}</h1>
-            <div className={`${item.num ==="Open" ? "text-green-500 font-bold p-1 rounded-lg border border-green-500 bg-green-50" : item.num === "Closed" ? "text-red-500 font-bold p-1 rounded-lg border border-red-500 bg-red-50" : ""}`}>{item.num}</div>
+            <div className={``}>{item.num}</div>
             <p className="text-xs text-placeholderText">{item.progress}</p>
             </div>
           </Card>

@@ -36,10 +36,18 @@ const Top5Restaurants = () => {
     }, []);
 
     const topFive = useMemo(() => {
-        return [...(stats || [])]
-            .sort((a, b) => (Number(b?.totalOrders || 0) - Number(a?.totalOrders || 0)))
+        const list = Array.isArray(stats) ? stats : [];
+        const withAdjustedTotals = list.map((r) => {
+            const cancelled = Number(r?.byStatus?.Cancelled || 0);
+            const total = Number(r?.totalOrders || 0);
+            const adjustedTotal = Math.max(0, total - cancelled);
+            return { ...r, adjustedTotal };
+        });
+        return withAdjustedTotals
+            .sort((a, b) => (Number(b?.adjustedTotal || 0) - Number(a?.adjustedTotal || 0)))
             .slice(0, 5);
     }, [stats]);
+    console.log(topFive);
 
     return ( 
         <div className="font-noto">
@@ -59,7 +67,7 @@ const Top5Restaurants = () => {
                         {topFive.map((r, index) => {
                             const name = r?.restaurantName || "Unknown Restaurant";
                             const initial = name?.[0] || "?";
-                            const total = Number(r?.totalOrders || 0);
+                            const total = Number(r?.adjustedTotal ?? (Number(r?.totalOrders || 0) - Number(r?.byStatus?.Cancelled || 0)));
                             return (
                                 <Card
                                     key={r.restaurantId || name || index}

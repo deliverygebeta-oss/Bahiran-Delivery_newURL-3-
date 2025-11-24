@@ -103,7 +103,7 @@ const AnimatedCircles = () => {
   }, [circles.length]);
 
   return (
-    <div className={`absolute inset-0 pointer-events-none z-0`}>
+    <div className={`absolute inset-0 pointer-events-none z-0 `}>
       {circles.map((circle) => (
         <div
           key={circle.id}

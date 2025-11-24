@@ -145,7 +145,7 @@ const Landing = () => {
   return (
     <>
 
-      <div className="relative min-h-screen bg-cover font-sans text-gray-900 bg-landing">
+      <div className="relative h-72 md:h-screen  bg-cover font-sans text-gray-900 bg-landing">
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/20 z-0" />
 
@@ -176,7 +176,7 @@ const Landing = () => {
         </header>
 
         {/* Hero Section */}
-        <section className="relative z-10 flex flex-col items-start pl-10 justify-center h-[630px]">
+        <section className="relative z-10 flex flex-col items-start pl-10 justify-center sm:h-[calc(100vh-200px)] lg:h-[630px]">
           <h1 className="text-white text-4xl md:text-7xl font-bold tracking-tight drop-shadow-xl animate-fade-in-down mb-6 motion-translate-x-in-[-20%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-duration-1500">
             <span className="block mb-2 md:mb-4 text-start  ">Craving?</span>
             <span className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-500 bg-clip-text text-transparent  motion-translate-x-in-[98%] motion-translate-y-in-[-1%] motion-opacity-in-[0%]">
@@ -221,7 +221,7 @@ const Landing = () => {
 
 
         {/* Explore Section */}
-        <section id="explore" className="relative pt-20 pb-20 min-h-[700px] bg-[#f4f1e9] backdrop-blur-lg rounded-t-xl  ">
+        <section id="explore" className="relative pt-20 pb-20  bg-[#f4f1e9] backdrop-blur-lg rounded-t-xl  ">
           <div className="max-w-6xl mx-auto overflow-hidden flex flex-col items-center justify-center ">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
               Featured Restaurants

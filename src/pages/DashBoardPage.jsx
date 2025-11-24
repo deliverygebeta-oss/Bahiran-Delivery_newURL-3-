@@ -19,9 +19,9 @@ const DashBoardPage = () => {
 
   return (
     <>
-      <div className="w-[100%] h-[calc(100vh-65px)] p-1 pl-12 flex flex-col justify-center bg-[#f4f1e9]">
+      <div className="w-[100%] md:h-[calc(100vh-65px)] p-1 pl-12 flex flex-col justify-start bg-[#f4f1e9] gap-4">
         {role === "Admin" ? <AInfoCards /> : <InfoCards />}
-        <div className="flex justify-around items-center bg-opacity-0">
+        <div className="flex flex-col lg:flex-row justify-around items-center bg-opacity-0 my-10 md:my-0">
 
           {role === "Admin" ? <AChart /> : <Chart />}
           {role === "Admin" ? <Top5Restaurants /> : <RecentOrdersTB />}

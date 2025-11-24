@@ -67,7 +67,7 @@
   height: 100vh;
   
   background-size: cover;
-  height: 100vh;
+  /* height: 100vh; */
 }
 .bg-telet {
   background-image: url("https://res.cloudinary.com/drinuph9d/image/upload/v1761892217/food_images/food_1761892216821_telet.png");
