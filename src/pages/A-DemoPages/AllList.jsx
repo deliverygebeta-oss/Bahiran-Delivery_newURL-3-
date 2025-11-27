@@ -16,7 +16,7 @@ const AllList = () => {
     <>
       <div className="p-8 flex gap-2 items-center justify-center h-[calc(100vh-65px)] bg-[#f4f1e9] font-noto">
         <Card>
-          <div className="w-[450px] h-[500px]">
+          <div className="w-[450px] h-[520px]">
             <div className="flex justify-between ">
               <h2 className="text-xl my-1 font-semibold">{list === "all" ? "all Users" : list}</h2>
               <button

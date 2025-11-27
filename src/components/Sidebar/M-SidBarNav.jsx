@@ -12,6 +12,8 @@ const ManagerNav = () => {
   const { activeNav } = useNavigation();
   // console.log(activeNav)
   const [activeComponent, setActiveComponent] = useState(null);
+  const [chengOrder , setChengOrder] = useState(false);
+
 
   useEffect(() => {
     switch (activeNav) {
@@ -19,7 +21,7 @@ const ManagerNav = () => {
         setActiveComponent(<DashBoardPage />);
         break;
       case 'Orders':
-        setActiveComponent(<Order />);
+        setActiveComponent(<Order chengOrder={chengOrder} setChengOrder={setChengOrder} />);
         break;
       case 'Menu':
         setActiveComponent(<Menu />);

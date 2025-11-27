@@ -15,8 +15,9 @@ const Settings = () => {
 
   const logout = () => {
     // Clear all user-related data from both storage types
-    sessionStorage.removeItem("user-data");
     sessionStorage.clear(); // Clear all session storage as backup
+    sessionStorage.removeItem("user-data");
+    sessionStorage.removeItem("Admin-data");
     localStorage.removeItem("token");
     
     // Clear menus and foods cache

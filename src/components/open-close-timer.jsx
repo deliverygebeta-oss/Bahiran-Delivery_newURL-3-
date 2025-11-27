@@ -9,6 +9,9 @@ const TimerToggle = () => {
       return null;
     }
   }, []);
+  setTimeout(() => {
+    console.log(userData);
+  }, 1000);
   const restaurantFromStore = userData?.state?.restaurant;
   const [isOpen, setIsOpen] = useState(Boolean(restaurantFromStore?.isOpenNow));
   const [loading, setLoading] = useState(false);
