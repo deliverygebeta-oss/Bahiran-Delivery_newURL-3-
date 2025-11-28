@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UseUserStore from "../../Store/UseStore";
-import { Loading, InlineLoadingDots } from "../Loading/Loading";
+import { InlineLoadingDots } from "../Loading/Loading";
 import { Eye, EyeOff } from "lucide-react";
 import VerifyForm from "./VerifyForm";
 
@@ -12,11 +12,51 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showVerifyForm, setShowVerifyForm] = useState(false);
-  const [user, setUserLocal] = useState(null); // Renamed from 'results' to 'user' for clarity, initialized as null
-  const [token, setToken] = useState("");
 
   const navigate = useNavigate();
-  const { setUser, setRestaurant, setIsLoggedIn } = UseUserStore();
+  const { setUser, setRestaurant, setOrders } = UseUserStore();
+
+  const fetchManagerRestaurant = async (authToken) => {
+    const res = await fetch(
+      "https://gebeta-delivery1.onrender.com/api/v1/restaurants/by-manager",
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+
+    const data = await res.json();
+    if (!res.ok || data.status !== "success") {
+      throw new Error(data.message || "Failed to load restaurants.");
+    }
+
+    const restaurant = data.data?.restaurants?.[0] || null;
+    setRestaurant(restaurant);
+    return restaurant;
+  };
+
+  const fetchManagerOrders = async (authToken, restaurantId) => {
+    if (!restaurantId) {
+      throw new Error("No restaurant assigned to this manager.");
+    }
+
+    const res = await fetch(
+      `https://gebeta-delivery1.onrender.com/api/v1/orders/restaurant/${restaurantId}/orders`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || "Failed to load orders.");
+    }
+
+    setOrders(Array.isArray(data?.data) ? data.data : []);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,57 +100,33 @@ const LoginForm = () => {
       //   return;
       // } 
       else {
-        setUserLocal(data.data.user);
-        setToken(data.token);
-        localStorage.setItem("token", data.token);
-        setUser(data.data.user);
-        // setIsLoggedIn(true); // Set logged in only on full success
+        const authenticatedUser = data.data?.user;
+        const authToken = data.token;
 
-        if (data.data.user.role === "Manager") {
-          // Fetch restaurants before navigating
-          await fetchRestaurants();
+        if (!authenticatedUser || !authToken) {
+          throw new Error("Invalid response from server");
+        }
+
+        localStorage.setItem("token", authToken);
+        setUser(authenticatedUser);
+
+        if (authenticatedUser.role === "Manager") {
+          const managerRestaurant = await fetchManagerRestaurant(authToken);
+          await fetchManagerOrders(authToken, managerRestaurant?.id);
           navigate("/managerDashboard");
-        } else if (data.data.user.role === "Admin") {
+        } else if (authenticatedUser.role === "Admin") {
           navigate("/adminDashboard");
+        } else {
+          navigate("/");
         }
       }
     } catch (error) {
       console.error("Login error:", error.message);
-      setErrorMg("Incorrect phone number or password");
+      setErrorMg(error.message || "Incorrect phone number or password");
     } finally {
       setLoading(false);
     }
   };
-
-  const fetchRestaurants = async () => {
-    if (!user?._id || !token) return; // Guard clause
-    try {
-      const res = await fetch(
-        `https://gebeta-delivery1.onrender.com/api/v1/restaurants/by-manager`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const data = await res.json();
-      if (res.ok && data.status === "success") {
-        setRestaurant(data.data.restaurants?.[0] || null);
-      } else {
-        throw new Error(data.message || "Failed to load restaurants.");
-      }
-    } catch (err) {
-      console.error("Fetch error:", err);
-    }
-  };
-
-  // Effect to fetch restaurants only when user is a Manager and token is available
-  useEffect(() => {
-    if (user?.role === "Manager" && token) {
-      fetchRestaurants();
-    }
-  }, [user, token]);
 
   return (
     <form onSubmit={handleSubmit}>

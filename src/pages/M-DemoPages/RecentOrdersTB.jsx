@@ -43,7 +43,7 @@ const RecentOrdersTB = () => {
     const firstItem = items[0];
     return `${firstItem.foodName}${items.length > 1 ? ` +${items.length - 1} more` : ''}`;
   };
-  console.log(recentOrders);
+  // console.log(recentOrders);
 
   return (
     <>

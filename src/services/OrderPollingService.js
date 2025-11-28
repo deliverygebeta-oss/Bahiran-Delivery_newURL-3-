@@ -63,6 +63,11 @@ class OrderPollingService {
 
     this.socket.on("newOrder", (orderData) => {
       console.log("🔔 New order received via socket:", orderData);
+      // Immediately surface the notification using the payload from the socket
+      if (orderData) {
+        this.handleNewOrder(orderData);
+        console.log("Notification sent to the user(###################");
+      }
       // Trigger the callback in the React hook
       if (this.onNewOrderCallback) {
         this.onNewOrderCallback();
@@ -124,7 +129,7 @@ class OrderPollingService {
       const res = await axios.get(apiURL, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(res);
+      console.log(res.data.data);
 
       const orders = res.data.data || [];
       const sorted = this.sortOrders(orders);
@@ -160,9 +165,19 @@ class OrderPollingService {
 
   handleNewOrder(orderData) {
     const store = useUserStore.getState();
+    
+    
+    console.log(store.latestOrderId, "store.latestOrderId");
+
+
     const latestFetchedId = orderData?.orderId;
     const currentLatestId = store.latestOrderId;
     if (latestFetchedId && latestFetchedId !== currentLatestId) {
+
+
+      console.log("Notification sent to the user(%%%%%%%%%%");
+      
+      
       store.setNewOrderAlert?.(true);
       store.setLatestOrderId?.(latestFetchedId);
       store.addNotification?.({
