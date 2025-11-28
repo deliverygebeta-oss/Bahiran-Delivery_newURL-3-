@@ -10,7 +10,7 @@ import { io } from "socket.io-client"
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png"
 import markerIcon from "leaflet/dist/images/marker-icon.png"
 import markerShadow from "leaflet/dist/images/marker-shadow.png"
-import bahiranMap from "../../../public/bahiranMap.png"
+import bahiranMap from "../../assets/images/bahiranMap.png"
 
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
