@@ -10,6 +10,7 @@ import { io } from "socket.io-client"
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png"
 import markerIcon from "leaflet/dist/images/marker-icon.png"
 import markerShadow from "leaflet/dist/images/marker-shadow.png"
+import bahiranMap from "../../../public/bahiranMap.png"
 
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
@@ -29,12 +30,13 @@ const createVehicleIcon = (url, size = 36) =>
     shadowSize: [40, 40],
   })
 
+const fallbackBahiranIcon = createVehicleIcon(bahiranMap, 40)
 const carIcon = createVehicleIcon("https://cdn-icons-png.flaticon.com/512/744/744465.png", 38)
 const bikeIcon = createVehicleIcon("https://cdn-icons-png.flaticon.com/512/2972/2972185.png", 34)
 const motorcycleIcon = createVehicleIcon("https://cdn-icons-png.flaticon.com/512/2972/2972185.png", 36)
 const walkingIcon = createVehicleIcon("https://cdn-icons-png.flaticon.com/512/1085/1085143.png", 32)
 const verifiedDeliveryIcon = createVehicleIcon("https://cdn-icons-png.flaticon.com/512/744/744465.png", 40)
-const defaultDeliveryIcon = carIcon
+const defaultDeliveryIcon = fallbackBahiranIcon
 
 const getDemoCoordinates = (index) => {
   const baseCoords = [8.9900123, 38.7539948] // Addis Ababa center
@@ -188,6 +190,9 @@ const DeliveryGuys = () => {
 
   const getDeliveryIcon = (method = "") => {
     const m = method?.toLowerCase()
+    if (!m) {
+      return fallbackBahiranIcon
+    }
     switch (m) {
       case "car":
         return carIcon
