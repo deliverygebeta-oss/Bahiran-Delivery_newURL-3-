@@ -47,7 +47,7 @@ const RecentOrdersTB = () => {
 
   return (
     <>
-      <Card>
+      <Card >
         <h2 className="text-xl font-bold">Recent Orders</h2>
         <p className="text-sm text-placeholderText">
           you have <span className="text-primary font-semibold">{newOrdersCount}</span> new
@@ -71,23 +71,24 @@ const RecentOrdersTB = () => {
               recentOrders.map((order, index) => (
                 <Card
                   key={order.orderId || index}
-                  className="px- py-[2px] border-b border-gray flex items-center justify-between gap-5"
+                  className="w-full px-4 py-2 border-b border-gray flex items-center justify-between gap-4 last:border-b-0"
                 >
-                  <div className="motion-preset-bounce motion-duration-300 text-left flex gap-2 px-1">
+                  <div className="motion-preset-bounce motion-duration-300 text-left flex gap-3 px-1 items-center">
                     <div>
-                      <div className="px-4 py-2 text2xl text-gray-400 pb-1 w-[50px] h-[50px] flex items-center justify-center  border-gray border rounded-full bg-cardBackground motion-preset-bounce motion-duration-300 font-poppins font-bold">{restaurantName[0]}</div>
+                      <div className="px-4 py-2 text2xl text-gray-400 pb-1 w-[50px] h-[50px] flex items-center justify-center border-gray border rounded-full bg-cardBackground motion-preset-bounce motion-duration-300 font-poppins font-bold">
+                        {restaurantName?.[0] || "R"}
+                      </div>
                     </div>
                     <div>
                       <p className="text-sm">{getMainFoodItem(order.items)}&nbsp;x{getTotalQuantity(order.items)}</p>
                       <p className="text-xs text-placeholderText">
-                        
                         {order.phone || "Unknown User"}
                       </p>
                     </div>
                   </div>
-                  <div className="">
+                  <div className="flex flex-col items-end min-w-[110px]">
                     <span
-                      className={`font-semibold text-xs flex place-self-end text-[#333] p-1 px-2 rounded-full ml-8 motion-preset-bounce ${getStatusColor(order.orderStatus)}`}
+                      className={`font-semibold text-xs flex place-self-end text-[#333] p-1 px-2 rounded-full motion-preset-bounce ${getStatusColor(order.orderStatus)}`}
                     >
                       {order.orderStatus || "Pending"}
                     </span>

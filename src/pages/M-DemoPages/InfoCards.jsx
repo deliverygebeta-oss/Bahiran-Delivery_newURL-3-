@@ -142,10 +142,10 @@ const InfoCards = () => {
   ];
   return (
     <>
-      <div className="flex flex-wrap gap-4 md:justify-between font-noto">
+      <div className="flex flex-wrap gap-2 md:justify-between font-noto mt-2">
         {CardInfo.map((item, index) => (
           <Card key={index}>
-            <div className="flex flex-col items-start  md:w-[150px]">
+            <div className="flex flex-col items-start  h-[120px] md:w-[180px] gap-2">
             <div>{item.icon}</div>
             <h1 className="font-semibold">{item.label}</h1>
             <div className={``}>{item.num}</div>
