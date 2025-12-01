@@ -18,7 +18,7 @@ const LoginForm = () => {
 
   const fetchManagerRestaurant = async (authToken) => {
     const res = await fetch(
-      "https://gebeta-delivery1.onrender.com/api/v1/restaurants/by-manager",
+      "https://api.bahirandelivery.cloud//api/v1/restaurants/by-manager",
       {
         headers: {
           Authorization: `Bearer ${authToken}`,
@@ -42,7 +42,7 @@ const LoginForm = () => {
     }
 
     const res = await fetch(
-      `https://gebeta-delivery1.onrender.com/api/v1/orders/restaurant/${restaurantId}/orders`,
+      `https://api.bahirandelivery.cloud//api/v1/orders/restaurant/${restaurantId}/orders`,
       {
         headers: {
           Authorization: `Bearer ${authToken}`,
@@ -72,7 +72,7 @@ const LoginForm = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        "https://gebeta-delivery1.onrender.com/api/v1/users/login",
+        "https://api.bahirandelivery.cloud//api/v1/users/login",
         {
           method: "POST",
           headers: {

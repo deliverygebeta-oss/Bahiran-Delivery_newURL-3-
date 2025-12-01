@@ -33,7 +33,7 @@ const DashBoardPage = () => {
     <>
       <div className="w-[100%] md:h-[calc(100vh-65px)] p-1 pl-12 flex flex-col justify-start bg-[#f4f1e9] gap-0 ">
         {role === "Admin" ? <AInfoCards /> : <InfoCards />}
-        <div className="flex flex-col lg:flex-row justify-around items-center bg-opacity-0  md:my-0 ">
+        <div className="flex flex-col lg:flex-row justify-around  items-center bg-opacity-0 ">
           {role === "Admin" ? <AChart /> : <Chart />}
           {role === "Admin" ? <Top5Restaurants /> : <RecentOrdersTB />}
           {/* <Timer /> */}

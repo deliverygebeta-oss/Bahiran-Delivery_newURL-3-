@@ -103,21 +103,21 @@ const WithdrawalHistory = () => {
 
     return (
         <div className="p-6 pt-3 bg-[#f4f1e9] font-noto md:h-[calc(100vh-65px)]">
-            <div className="max-w-7xl mx-auto flex flex-col items-center justify-center">
+            <div className=" mx-auto flex flex-col items-center justify-center">
                 <Card>
-                    <div className="md:h-[500px]  overflow-y-auto">
+                    <div className="md:h-[670px]  w-[1000px]">
 
                     <div className="flex items-center justify-between mb-4 lg:w-[1000px] ">
                         <h1 className="text-xl font-semibold">{requesterType}</h1>
                         <span className=" flex items-center gap-2">
                             <button
-                                className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200"
+                                className={`text-md px-2 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200 ${requesterType === "Restaurant" ? "bg-gray-800 text-white" : ""} transition-all duration-300`}
                                 onClick={() => setRequesterType("Restaurant")}
                             >
                                 Restaurant
                             </button>
                             <button
-                                className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200"
+                                className={`text-md px-2 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200 ${requesterType === "Delivery" ? "bg-gray-800 text-white" : ""} transition-all duration-300`}
                                 onClick={() => setRequesterType("Delivery")}
                             >
                                 Delivery Person
@@ -131,7 +131,7 @@ const WithdrawalHistory = () => {
                             No withdrawal history found.
                         </div>
                     ) : (
-                        <div className="overflow-x-auto -mx-2 sm:mx-0">
+                        <div className="overflow-x-auto -mx-2 sm:mx-0 md:w-[1000px] h-[600px] overflow-y-auto">
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
@@ -234,21 +234,21 @@ const WithdrawalHistory = () => {
                                                         const statusColorR = getStatusColor(item.status);
                                                         return (
                                                             <tr key={item._id} className="bg-gray-50">
-                                                                <td className="px-6 py-3 whitespace-nowrap text-xs text-gray-700">
+                                                                <td className="px-6 py-3 whitespace-nowrap text-md text-gray-700">
                                                                     {dateR}
                                                                 </td>
-                                                                <td className="px-6 py-3 whitespace-nowrap text-xs text-gray-700">
+                                                                <td className="px-6 py-3 whitespace-nowrap text-md text-gray-700">
                                                                     {/* Indented sub-row label */}
                                                                     <span className="text-gray-500">Previous request</span>
                                                                 </td>
-                                                                <td className="px-6 py-3 whitespace-nowrap text-xs text-gray-700">
+                                                                <td className="px-6 py-3 whitespace-nowrap text-md text-gray-700">
                                                                     {amountR} {item.currency}
                                                                 </td>
-                                                                <td className="px-6 py-3 whitespace-nowrap text-xs text-gray-700">
+                                                                <td className="px-6 py-3 whitespace-nowrap text-md text-gray-700">
                                                                     {feeR} {item.currency}
                                                                 </td>
                                                                 <td className="px-6 py-3 whitespace-nowrap">
-                                                                    <span className={`inline-flex px-2 py-0.5 text-[10px] font-semibold rounded-full ${statusColorR}`}>
+                                                                    <span className={`inline-flex px-2 py-0.5 text-[13px] font-semibold rounded-full ${statusColorR}`}>
                                                                         {item.status}
                                                                     </span>
                                                                 </td>

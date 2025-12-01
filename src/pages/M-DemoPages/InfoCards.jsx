@@ -145,11 +145,11 @@ const InfoCards = () => {
       <div className="flex flex-wrap gap-2 md:justify-between font-noto mt-2">
         {CardInfo.map((item, index) => (
           <Card key={index}>
-            <div className="flex flex-col items-start  h-[120px] md:w-[180px] gap-2">
+            <div className="flex flex-col items-start  md:h-[120px] md:w-[210px] gap-2">
             <div>{item.icon}</div>
-            <h1 className="font-semibold">{item.label}</h1>
-            <div className={``}>{item.num}</div>
-            <p className="text-xs text-placeholderText">{item.progress}</p>
+            <h1 className="md:text-lg font-semibold">{item.label}</h1>
+            <div className={`md:text-xl`}>{item.num}</div>
+            <p className="md:text-md text-placeholderText">{item.progress}</p>
             </div>
           </Card>
         ))}

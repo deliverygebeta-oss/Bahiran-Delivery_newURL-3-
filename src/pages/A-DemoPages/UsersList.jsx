@@ -83,30 +83,30 @@ const UsersList = ({ role }) => {
             }}
           >
             <div className=" w-fit p-4 bg-white border  rounded-lg font-noto m-2 shadow-lg hover:bg-gray-50 ">
-              <div className="flex items-center justify-between min-w-[400px] px-5 pl-2">
+              <div className="flex items-center justify-between min-w-[400px] w-[480px] ">
                   
                   <div className="flex justify-center items-center ">
 
                     <img
                       className={`mx- object-cover object-center ${
                         user.profilePicture ? "" : "bg-gray"
-                      } w-[70px] h-[70px] flex justify-center items-center shadow-lg rounded-full`}
+                      } w-[70px] h-[70px] md:w-[100px] md:h-[100px] flex justify-center items-center shadow-lg rounded-full`}
                       src={user.profilePicture}
                       alt=""
                     />
                   </div>
                   <div className="flex flex-col w-[150px] gap-2">
-                    <h2 className="text-md font-semibold ">
+                    <h2 className="text-sm md:text-md font-semibold ">
                       {user.firstName || "Unnamed"} {user.lastName || "Unnamed"}
                     </h2>
-                    <p className="text-[10px] pl-1 text-md">{user.phone || "N/A"}</p>
+                    <p className=" pl-1 text-sm md:text-md">{user.phone || "N/A"}</p>
                   </div>
                 <div className="flex flex-col items-start justify-end ">
                 <p className="text-xs">
-                  <span className="font-semibold text-[10px]">Enrolled on</span>{" "}
+                  <span className="font-semibold text-[12px]">Enrolled on</span>{" "}
                   <br /> {formatDate(user.createdAt)}
                 </p>
-                <p className={`text-[12px] font- mt-3 ${user.role === "Admin" ? "bg-red-100" : user.role === "Customer" ? "bg-blue-100" : user.role === "Manager" ? "bg-green-100" : "bg-yellow-100"} rounded-full px-2 py-1 flex justify-center items-center`}>{user.role === "Delivery_Person" ? "Delivery" : `${user.role}`}</p>
+                <p className={`text-[14px] font- mt-3 ${user.role === "Admin" ? "bg-red-100" : user.role === "Customer" ? "bg-blue-100" : user.role === "Manager" ? "bg-green-100" : "bg-yellow-100"} rounded-full px-2 py-1 flex justify-center items-center`}>{user.role === "Delivery_Person" ? "Delivery" : `${user.role}`}</p>
                   </div>
 
                 

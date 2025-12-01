@@ -49,7 +49,7 @@ const RecentOrdersTB = () => {
     <>
       <Card >
         <h2 className="text-xl font-bold">Recent Orders</h2>
-        <p className="text-sm text-placeholderText">
+        <p className="text-md text-placeholderText">
           you have <span className="text-primary font-semibold">{newOrdersCount}</span> new
           orders
         </p>
@@ -75,13 +75,13 @@ const RecentOrdersTB = () => {
                 >
                   <div className="motion-preset-bounce motion-duration-300 text-left flex gap-3 px-1 items-center">
                     <div>
-                      <div className="px-4 py-2 text2xl text-gray-400 pb-1 w-[50px] h-[50px] flex items-center justify-center border-gray border rounded-full bg-cardBackground motion-preset-bounce motion-duration-300 font-poppins font-bold">
+                      <div className="px-4 py-2 text-3xl text-gray-400 pb-1 w-[50px] h-[50px] flex items-center justify-center border-gray border rounded-full bg-cardBackground motion-preset-bounce motion-duration-300 font-poppins font-bold">
                         {restaurantName?.[0] || "R"}
                       </div>
                     </div>
                     <div>
                       <p className="text-sm">{getMainFoodItem(order.items)}&nbsp;x{getTotalQuantity(order.items)}</p>
-                      <p className="text-xs text-placeholderText">
+                      <p className="text-sm text-placeholderText">
                         {order.phone || "Unknown User"}
                       </p>
                     </div>

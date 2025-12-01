@@ -26,7 +26,7 @@ const ForgotPasswordForm = () => {
     // console.log(phone)
 
     try {
-      const response = await axios.post('https://gebeta-delivery1.onrender.com/api/v1/users/requestResetOTP', {
+      const response = await axios.post('https://api.bahirandelivery.cloud/api/v1/users/requestResetOTP', {
         phone: phone,
       });
 

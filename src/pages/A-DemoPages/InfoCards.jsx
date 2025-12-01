@@ -132,11 +132,11 @@ const AInfoCards = () => {
                         <div className="flex items-center">
                             {stats.roleItems.slice(0, 2).map((r, idx) => (
                                 <div key={r.label} className="flex items-center">
-                                    <span className="text-[12px] ">
-                                        <span className="font-semibold p-1 rounded-full bg-gray-900 text-gray-100 py-0">{r.count}</span> {r.label}
+                                    <span className="text-sm md:text-md ">
+                                        <span className="font-semibold p-1 rounded-full bg-gray-900 text-gray-100 py-0 text-xs md:text-sm">{r.count}</span> {r.label}
                                     </span>
                                     {idx < 1 && (
-                                        <div className="w-px h-4 bg-gray-300 mx-2" />
+                                        <div className="w-px h-4 md:h-6 bg-gray-300 mx-2" />
                                     )}
                                 </div>
                             ))}
@@ -144,8 +144,8 @@ const AInfoCards = () => {
                         <div className="flex items-center mt-1">
                             {stats.roleItems.slice(2).map((r, idx) => (
                                 <div key={r.label} className="flex items-center mb-">
-                                    <span className="text-[12px] ">
-                                        <span className="font-semibold p-1 rounded-full bg-gray-900 text-gray-100 py-0"><span>{r.count}</span></span> {r.label}
+                                    <span className="text-sm md:text-md ">
+                                        <span className="font-semibold p-1 rounded-full bg-gray-900 text-gray-100 py-0 text-xs md:text-sm"><span>{r.count}</span></span> {r.label}
                                     </span>
                                     {idx < stats.roleItems.slice(2).length - 1 && (
                                         <div className="w-px h-2 bg-gray-300 mx-2" />
@@ -173,14 +173,14 @@ const AInfoCards = () => {
 
     return (
         <>
-            <div className="flex flex-wrap md:justify-between font-noto">
+            <div className="flex flex-wrap gap-2 md:justify-between font-noto mt-2 h-[180px]">
                 {CardInfo.map((item, index) => (
                     <Card key={index}>
-                        <div className="flex flex-col items-start md:w-[170px] ">
+                        <div className="flex flex-col items-start md:h-[120px] md:w-[210px] gap-2">
                             <div>{item.icon}</div>
-                            <h1 className="font-semibold">{item.label}</h1>
+                            <h1 className="md:text-lg font-semibold">{item.label}</h1>
                             <div>{item.num}</div>
-                            <p className="text-xs text-placeholderText">{item.progress}</p>
+                            <p className="md:text-md text-placeholderText">{item.progress}</p>
                         </div>
                     </Card>
                 ))}

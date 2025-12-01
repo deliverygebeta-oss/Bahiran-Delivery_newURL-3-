@@ -85,7 +85,7 @@ const AChart = () => {
 
     return ( 
         <>
-        <div className="w-full max-w-[600px] h-[390px] p-2 bg-white border border-[#e0cda9] sha rounded-lg font-noto">
+        <div className=" w-[600px] h-[400px] md:w-[800px] md:h-[500px] p-2 bg-white border border-[#e0cda9] sha rounded-lg font-noto ">
             <div className="flex items-center justify-between mb-2 px-2">
                 <h2 className="text-center w-full md:w-auto font-semibold">Admin Analytics </h2>
                 <div className="hidden md:flex gap-2">

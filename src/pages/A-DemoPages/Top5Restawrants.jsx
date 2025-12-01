@@ -49,56 +49,69 @@ const Top5Restaurants = () => {
     }, [stats]);
     console.log(topFive);
 
-    return ( 
+    return (
         <div className="font-noto">
             <Card>
-                <h2 className="text-xl font-bold">Top 5 Restaurants</h2>
-                <p className="text-sm text-placeholderText mb-2">
-                   Most ordered restaurants
-                </p>
-                {loading && <p className="text-sm text-placeholderText">Loading...</p>}
-                {error && <p className="text-sm text-red-500">{error}</p>}
-                {!loading && !error && (topFive.length === 0 ? (
-                    <div className="text-center py-4">
-                        <p className="text-placeholderText">No data available</p>
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between py-5">
+                    <div>
+                        <h2 className="text-xl font-bold">Top 5 Restaurants</h2>
+                        <p className="text-sm text-placeholderText mb-2 sm:mb-0">
+                            Most ordered restaurants
+                        </p>
                     </div>
-                ) : (
-                    <>
-                        {topFive.map((r, index) => {
-                            const name = r?.restaurantName || "Unknown Restaurant";
-                            const initial = name?.[0] || "?";
-                            const total = Number(r?.adjustedTotal ?? (Number(r?.totalOrders || 0) - Number(r?.byStatus?.Cancelled || 0)));
-                            return (
-                                <Card
-                                    key={r.restaurantId || name || index}
-                                    className="px- py-[2px] border-b border-gray flex items-center justify-between gap-5"
-                                >
-                                    <div className="motion-preset-bounce motion-duration-300 text-left flex gap-2 px-1">
-                                        <div>
-                                            <div className="px-4 py-2 text2xl text-gray-400 pb-1 w-[50px] h-[50px] flex items-center justify-center  border-gray border rounded-full bg-cardBackground motion-preset-bounce motion-duration-300 font-poppins font-bold">
-                                                {initial}
+                </div>
+
+                {loading && <p className="text-sm text-placeholderText py-4">Loading...</p>}
+                {error && <p className="text-sm text-red-500 py-4">{error}</p>}
+
+                {!loading && !error && (
+                    topFive.length === 0 ? (
+                        <div className="text-center py-6">
+                            <p className="text-placeholderText">No data available</p>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-4 px-4 py-4 md:max-h-[350px] md:overflow-y-auto">
+                            {topFive.map((r, index) => {
+                                const name = r?.restaurantName || "Unknown Restaurant";
+                                const initial = name?.[0]?.toUpperCase() || "?";
+                                const total = Number(
+                                    r?.adjustedTotal ?? (
+                                        Number(r?.totalOrders || 0) - Number(r?.byStatus?.Cancelled || 0)
+                                    )
+                                );
+
+                                return (
+                                    <div
+                                        key={r.restaurantId || `${name}-${index}`}
+                                        className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <div>
+                                                <div className="w-[52px] h-[52px] flex items-center justify-center rounded-full border border-gray bg-cardBackground text-gray-700 text-xl font-bold">
+                                                    {initial}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="text-sm sm:text-base font-semibold">{name}</p>
+                                                <p className="text-xs sm:text-sm text-placeholderText leading-tight">
+                                                    Pending: {r?.byStatus?.Pending || 0} • Preparing: {r?.byStatus?.Preparing || 0} • Completed: {r?.byStatus?.Completed || 0}
+                                                </p>
                                             </div>
                                         </div>
-                                        <div>
-                                            <p className="text-sm">{name}</p>
-                                            <p className="text-xs text-placeholderText">
-                                                Pending: {r?.byStatus?.Pending || 0} • Preparing: {r?.byStatus?.Preparing || 0} • Completed: {r?.byStatus?.Completed || 0}
-                                            </p>
+                                        <div className="flex items-center justify-end">
+                                            <span className="font-semibold text-xs sm:text-sm px-3 py-1 rounded-full bg-blue-100 text-blue-700">
+                                                {total} orders
+                                            </span>
                                         </div>
                                     </div>
-                                    <div className="">
-                                        <span className="font-semibold text-xs flex place-self-end p-1 px-2 rounded-full ml-8 motion-preset-bounce bg-blue-100 text-blue-700">
-                                            {total} orders
-                                        </span>
-                                    </div>
-                                </Card>
-                            );
-                        })}
-                    </>
-                ))}
+                                );
+                            })}
+                        </div>
+                    )
+                )}
             </Card>
         </div>
-     );
-}
- 
+    );
+};
+
 export default Top5Restaurants;

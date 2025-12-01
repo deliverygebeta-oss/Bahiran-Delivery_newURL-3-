@@ -56,76 +56,76 @@ const ShowById = () => {
 
   return (
     <>
-      <div className="w-[600px] h-[500px] flex items-center justify-center bg-white shadow-lg rounded-xl border border-gray">
+      <div className="w-full max-w-[960px] min-h-[560px] flex items-center justify-center bg-white shadow-2xl rounded-2xl border border-gray p-4 md:p-8">
         {loading ? (
           <Loading />
         ) : getId ? (
-          <div className="w-full h-full flex flex-col md:flex-row items-center justify-between p-6 gap-6 motion-scale-in-[0.72] motion-translate-x-in-[-22%] motion-translate-y-in-[-3%]">
+          <div className="w-full h-full flex flex-col md:flex-row items-center justify-between gap-8 motion-scale-in-[0.72] motion-translate-x-in-[-22%] motion-translate-y-in-[-3%]">
             {/* Left: Profile Image and Name */}
-            <div className="flex flex-col items-center gap-4 border-r border-gray pr-6 h-[350px] flex-shrink-0">
+            <div className="flex flex-col items-center gap-5 border-b md:border-b-0 md:border-r border-gray pb-6 md:pb-0 md:pr-8 flex-shrink-0 w-full md:w-[320px]">
               <img
-                className="rounded-full shadow-lg w-[150px] h-[150px] object-cover object-center border border-gray"
+                className="rounded-full shadow-lg w-[190px] h-[190px] object-cover object-center border-2 border-gray"
                 src={profileImageSrc}
                 alt="Profile picture"
               />
-              <h2 className="text-lg font-semibold text-primary text-center">
+              <h2 className="text-2xl font-semibold text-primary text-center">
                 {data?.data?.user?.firstName} {data?.data?.user?.lastName}
               </h2>
             </div>
 
             {/* Right: User Info */}
-            <div className="flex flex-col justify-between flex-1 h-full gap-4">
+            <div className="flex flex-col justify-between flex-1 h-full gap-6 w-full">
               {/* User Details */}
-              <div className="flex flex-col gap-4">
-                <p className="text-gray-600 font-semibold">
-                  Phone: <span className="font-normal">{data?.data?.user?.phone}</span>
+              <div className="flex flex-col gap-5 text-base md:text-lg">
+                <p className="text-gray-600 font-semibold flex flex-wrap gap-1">
+                  Phone: <span className="font-normal text-gray-800">{data?.data?.user?.phone}</span>
                 </p>
-                <p className="text-gray-600 font-semibold">
-                  Role: <span className="font-normal">{data?.data?.user?.role}</span>
+                <p className="text-gray-600 font-semibold flex flex-wrap gap-1">
+                  Role: <span className="font-normal text-gray-800">{data?.data?.user?.role}</span>
                 </p>
-                <p className="text-gray-600 font-semibold">
+                <p className="text-gray-600 font-semibold flex flex-wrap gap-1">
                   Created At: <span className="text-primary font-normal">{formatDate(data?.data?.user?.createdAt)}</span>
                 </p>
-                <p className="text-gray-600 font-semibold">
-                  ID: <span className="font-normal">{data?.data?.user?._id}</span>
+                <p className="text-gray-600 font-semibold flex flex-wrap gap-1 break-all">
+                  ID: <span className="font-normal text-gray-800">{data?.data?.user?._id}</span>
                 </p>
                 {data?.data?.user?.role === "Delivery_Person" && (
-                  <p className="text-gray-600 font-semibold">
-                    FCN Number: <span className="font-normal">{data?.data?.user?.fcnNumber}</span>
+                  <p className="text-gray-600 font-semibold flex flex-wrap gap-1">
+                    FCN Number: <span className="font-normal text-gray-800">{data?.data?.user?.fcnNumber}</span>
                   </p>
                 )}
                 {data?.data?.user?.role === "Delivery_Person" && (
-                  <p className="text-gray-600 font-semibold">
-                    Vehicle type: <span className="font-normal">{data?.data?.user?.deliveryMethod}</span>
+                  <p className="text-gray-600 font-semibold flex flex-wrap gap-1">
+                    Vehicle type: <span className="font-normal text-gray-800">{data?.data?.user?.deliveryMethod}</span>
                   </p>
                 )}
 
                 {/* Addresses Section */}
                 {Array.isArray(data?.data?.user?.addresses) && data?.data?.user?.addresses.length > 0 && (
-                  <div className="mt-4 space-y-2 max-h-40 overflow-y-auto pr-1">
+                  <div className="mt-2 space-y-3 max-h-48 overflow-y-auto pr-1">
                     <button
                       type="button"
-                      className="px-3 py-1 text-sm rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors self-start"
+                      className="px-4 py-2 text-sm rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors self-start"
                       onClick={() => setShowAddresses((prev) => !prev)}
                     >
                       {showAddresses ? "Hide Addresses" : "Show Addresses"}
                     </button>
 
                     {showAddresses && (
-                      <div className="space-y-2">
-                        <p className="text-gray-700 font-semibold">Addresses:</p>
-                        <ul className="space-y-2 text-sm">
+                      <div className="space-y-3">
+                        <p className="text-gray-700 font-semibold text-lg">Addresses:</p>
+                        <ul className="space-y-3 text-sm">
                           {data?.data?.user?.addresses.map((addr) => (
                             <li
                               key={addr?._id}
-                              className="border border-gray-200 rounded-md p-2 bg-gray-50"
+                              className="border border-gray-200 rounded-xl p-3 bg-gray-50"
                             >
-                              <p className="text-gray-700 font-semibold">
+                              <p className="text-gray-700 font-semibold text-base">
                                 {addr?.label || "Address"}
                                 {addr?.name && <span className="font-normal"> - {addr.name}</span>}
                               </p>
                               {addr?.additionalInfo && (
-                                <p className="text-gray-600 text-xs">{addr.additionalInfo}</p>
+                                <p className="text-gray-600 text-xs mt-1">{addr.additionalInfo}</p>
                               )}
                             </li>
                           ))}
@@ -137,18 +137,18 @@ const ShowById = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-3 self-end">
+              <div className="flex gap-4 self-end pt-2">
                 <button
-                  className="bg-blue-200 rounded-full w-[40px] h-[40px] flex items-center justify-center hover:translate-y-1 transition-transform hover:shadow-lg duration-300"
+                  className="bg-blue-500 text-white rounded-full w-[48px] h-[48px] flex items-center justify-center hover:translate-y-1 transition-transform hover:shadow-lg duration-300"
                   onClick={() => setShowEditForm(true)}
                 >
-                  <Pencil strokeWidth={1} size={20} />
+                  <Pencil strokeWidth={1.5} size={22} />
                 </button>
                 <button
-                  className="bg-red-200 rounded-full w-[40px] h-[40px] flex items-center justify-center hover:translate-y-1 transition-transform hover:shadow-lg duration-300"
+                  className="bg-red-500 text-white rounded-full w-[48px] h-[48px] flex items-center justify-center hover:translate-y-1 transition-transform hover:shadow-lg duration-300"
                   onClick={() => deleteUser(getId)}
                 >
-                  <Trash strokeWidth={1} size={20} />
+                  <Trash strokeWidth={1.5} size={22} />
                 </button>
               </div>
             </div>
