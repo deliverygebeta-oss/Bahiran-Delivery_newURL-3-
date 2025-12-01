@@ -30,7 +30,7 @@ const ManagerSidebar = () => {
     <aside className="w-60 min-h-screen  bg-[url('https://res.cloudinary.com/drinuph9d/image/upload/v1761891640/food_images/food_1761891639878_side-nav.png')] bg-cover bg-center   bg-cardBackground shadow-md p-6   sticky top-0 left-0 motion-preset-slide-right motion-duration-1500 font-noto">
       <div className="text-lg font-bold pb-5 flex items-center justify-center  space-x-1 border-b border-[#e2b96c] mb-8 gap-4">
             <img src="https://res.cloudinary.com/drinuph9d/image/upload/v1761897257/food_images/food_1761897256388_logo.png" alt="Gbeታ Logo" className="w-9 h-9 rounded-lg bg-[#8f4504] object-contain"/>
-      <span>Gebeታ Management</span>
+      <span>ባህrun Management</span>
       </div>
 
       <nav className="space-y-3" >

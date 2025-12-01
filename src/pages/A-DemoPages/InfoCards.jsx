@@ -176,7 +176,7 @@ const AInfoCards = () => {
             <div className="flex flex-wrap md:justify-between font-noto">
                 {CardInfo.map((item, index) => (
                     <Card key={index}>
-                        <div className="flex flex-col items-start md:w-[170px]">
+                        <div className="flex flex-col items-start md:w-[170px] ">
                             <div>{item.icon}</div>
                             <h1 className="font-semibold">{item.label}</h1>
                             <div>{item.num}</div>

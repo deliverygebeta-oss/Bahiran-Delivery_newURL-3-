@@ -7,7 +7,7 @@ import WaveDivider from "../components/VPLocation/WaveDivider";
 import AnimatedCircles from "../components/VPLocation/circles";
 import AllFoods from "../components/VPLocation/allFoods";
 // import { Facebook, Instagram, Linkedin, Tiktok, Twitter } from 'lucide-react'; // Add this import if Lucide React is available
-
+// import { Facebook ,Instagram , } from 'lucide-react';
 // import CL from "../components/VPLocation/CL";
 
 // Constants for scroll thresholds (abstracted from hardcoded values)
@@ -162,7 +162,7 @@ const Landing = () => {
                 alt="Logo"
                 className="w-10 h-10 object-cover rounded"
               />
-              Gebeታ
+              ባህrun
             </Link>
             <div className="flex gap-4">
               <button
@@ -364,7 +364,7 @@ const Landing = () => {
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-extrabold">
                 <span className="bg-gradient-to-r from-[#905618] via-[#b8691e] to-[#905618] bg-clip-text text-transparent">
-                  Why order with Gebeታ?
+                  Why order with ባህrun?
                 </span>
               </h2>
               <p className="mt-4 text-[#6b5b4b] text-lg leading-relaxed">
@@ -427,7 +427,7 @@ const Landing = () => {
 
             <div className="mt-10 flex justify-center">
               <Link
-                to="/restaurants"
+                to="/DownloadApp"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#905618] to-[#b8691e] px-6 py-3 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
               >
                 Explore Restaurants
@@ -450,10 +450,10 @@ const Landing = () => {
                 <Link to="/" className="flex items-center gap-2">
                   <img
                     src="https://res.cloudinary.com/drinuph9d/image/upload/v1761897257/food_images/food_1761897256388_logo.png"
-                    alt="Gebeታ logo"
+                    alt="ባህRun logo"
                     className="w-10 h-10 object-cover rounded"
                   />
-                  <span className="font-logo text-2xl text-white">Gebeታ</span>
+                  <span className="font-logo text-2xl text-white">ባህrun</span>
                 </Link>
                 <p className="mt-4 text-sm text-gray-400">
                   Discover local flavors, top-rated restaurants, and quick reorders — all in one place.
@@ -498,7 +498,7 @@ const Landing = () => {
                     <a href="#explore" className="hover:text-white transition-colors">Featured Restaurants</a>
                   </li>
                   <li>
-                    <Link to="/restaurants" className="hover:text-white transition-colors">All Restaurants</Link>
+                    <Link to="/DownloadApp" className="hover:text-white transition-colors">All Restaurants</Link>
                   </li>
                 </ul>
               </div>
@@ -532,7 +532,7 @@ const Landing = () => {
             </div>
           </div>
           <div className="border-t border-white/10 py-4 text-center text-xs text-gray-400">
-            © {new Date().getFullYear()} Gebeታ. All rights reserved.
+            © {new Date().getFullYear()} ባህrun. All rights reserved.
           </div>
         </footer>
       </div>
