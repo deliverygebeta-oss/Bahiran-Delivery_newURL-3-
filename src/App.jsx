@@ -16,6 +16,7 @@ import useUserStore from "./Store/UseStore";
 import { useOrderFetcher } from "./services/OrderPollingService";
 import FirstLogin from "./components/firstLogin";
 import AllFoods from "./components/VPLocation/allFoods";
+import ProtectedRoute from "./components/ProtectedRoute";
 import AInfoCards from "./pages/A-DemoPages/InfoCards";
 function App() {
   const { user } = useUserStore();
@@ -56,9 +57,9 @@ function App() {
           <Route
             path="/adminDashboard"
             element={
-              // <ProtectedRoute allowedRoles={["Admin"]}>
-              // </ProtectedRoute>
+              <ProtectedRoute allowedRoles={["Admin"]}>
               <AdminNav />
+              </ProtectedRoute>
             }
           />
           <Route path="*" element={<NotFoundPage />}></Route>
