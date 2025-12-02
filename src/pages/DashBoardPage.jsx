@@ -31,7 +31,7 @@ const DashBoardPage = () => {
 
   return (
     <>
-      <div className="w-[100%] md:h-[calc(100vh-65px)] p-1 pl-12 flex flex-col justify-start bg-[#f4f1e9] gap-0 ">
+      <div className="w-[100%] md:h-[calc(100vh-65px)] p-1 pl-12 flex flex-col justify-start bg-[#f4f1e9]  ">
         {role === "Admin" ? <AInfoCards /> : <InfoCards />}
         <div className="flex flex-row justify-around  items-center bg-opacity-0 ">
           {role === "Admin" ? <AChart /> : <Chart />}
