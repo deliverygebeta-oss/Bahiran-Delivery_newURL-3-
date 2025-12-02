@@ -46,7 +46,7 @@ const getDemoCoordinates = (index) => {
 
 // Socket connection
 const createSocketConnection = (token) => {
-  const URL = "https://gebeta-delivery1.onrender.com"
+  const URL = "https://api.bahirandelivery.cloud/"
   return io(URL, {
     auth: { token },
     withCredentials: true,

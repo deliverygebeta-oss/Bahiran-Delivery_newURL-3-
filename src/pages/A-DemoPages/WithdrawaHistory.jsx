@@ -8,7 +8,7 @@ const WithdrawalHistory = () => {
     const [error, setError] = useState(null);
     const [expanded, setExpanded] = useState({});
     const [requesterType, setRequesterType] = useState("Delivery");
-    const baseUrl = 'https://gebeta-delivery1.onrender.com';
+    const baseUrl = 'https://api.bahirandelivery.cloud/';
     const apiUrl = `${baseUrl}/api/v1/balance/withdraw-history/${requesterType}`;
 
     const parseDecimal = (value) => {

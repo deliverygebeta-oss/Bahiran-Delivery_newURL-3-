@@ -12,7 +12,7 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
   const [amountInput, setAmountInput] = useState('');
   const [historyInfo, setHistoryInfo] = useState({ requesterType, totalBalance: null });
 
-  const baseUrl = 'https://gebeta-delivery1.onrender.com';
+  const baseUrl = 'https://api.bahirandelivery.cloud/';
   const token = localStorage.getItem('token');
   const headers = {
     'Authorization': `Bearer ${token}`,
@@ -34,6 +34,7 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
       const response = await fetch(`${baseUrl}/api/v1/balance`, { headers });
       if (!response.ok) throw new Error('Failed to fetch balance');
       const result = await response.json();
+      console.log(result);
       if (result.status === 'success') {
         setBalance(result.data);
       }

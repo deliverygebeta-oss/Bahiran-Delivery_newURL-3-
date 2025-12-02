@@ -47,7 +47,7 @@ class OrderPollingService {
       return;
     }
 
-    const socketURL = "https://gebeta-delivery1.onrender.com";
+    const socketURL = "https://api.bahirandelivery.cloud/";
     this.socket = io(socketURL, {
       auth: { token },
       transports: ["websocket", "polling"],

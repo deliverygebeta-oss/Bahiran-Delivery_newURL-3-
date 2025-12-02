@@ -11,7 +11,7 @@ const Top5Restaurants = () => {
             setLoading(true);
             setError("");
             try {
-                const base = "https://gebeta-delivery1.onrender.com";
+                const base = "https://api.bahirandelivery.cloud/";
                 const res = await fetch(
                     `${base}/api/v1/orders/restaurants/order-stats`,
                     {

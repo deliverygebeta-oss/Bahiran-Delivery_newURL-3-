@@ -26,7 +26,7 @@ const AInfoCards = () => {
     useEffect(() => {
         const fetchOrderStats = async () => {
             try {
-                const base = "https://gebeta-delivery1.onrender.com"
+                const base = "https://api.bahirandelivery.cloud/"
 
                 const res = await fetch(
                     `${base}/api/v1/orders/restaurants/order-stats`,
