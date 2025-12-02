@@ -57,7 +57,7 @@ const OtpVerificationForm = ({ phone, setShowOtpForm }) => {
 
     try {
       const res = await axios.post(
-        "https://gebeta-delivery1.onrender.com/api/v1/users/resetPasswordOTP",
+        "https://api.bahirandelivery.cloud/api/v1/users/resetPasswordOTP",
         {
           phone,
           code,
@@ -85,7 +85,7 @@ const OtpVerificationForm = ({ phone, setShowOtpForm }) => {
     }
     try {
       const res = await axios.post(
-        "https://gebeta-delivery1.onrender.com/api/v1/users/requestResetOTP",
+        "https://api.bahirandelivery.cloud/api/v1/users/requestResetOTP",
         { phone } // assuming the phone is needed
       );
       setMessage(res.data.message || "OTP resent");

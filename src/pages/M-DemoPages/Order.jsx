@@ -34,7 +34,7 @@ const ManagerOrders = () => {
       }
 
       const response = await fetch(
-        `https://gebeta-delivery1.onrender.com/api/v1/orders/restaurant/${restaurantId}/orders`,
+        `https://api.bahirandelivery.cloud/api/v1/orders/restaurant/${restaurantId}/orders`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -95,7 +95,7 @@ const ManagerOrders = () => {
 
     try {
       await axios.patch(
-        `https://gebeta-delivery1.onrender.com/api/v1/orders/${id}/status`,
+        `https://api.bahirandelivery.cloud/api/v1/orders/${id}/status`,
         {
           orderId: id,
           status: newStatus,
@@ -124,7 +124,7 @@ const ManagerOrders = () => {
     console.log(orderId, deliveryCode);
     setLoading(true);
     try{
-      const res = await axios.post(`https://gebeta-delivery1.onrender.com/api/v1/orders/verify-restaurant-pickup`,{
+      const res = await axios.post(`https://api.bahirandelivery.cloud/api/v1/orders/verify-restaurant-pickup`,{
         orderId: orderId,
         pickupVerificationCode: deliveryCode,
       },{

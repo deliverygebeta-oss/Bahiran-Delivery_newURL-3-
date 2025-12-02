@@ -33,7 +33,7 @@ const MEditFood = ({ foodId }) => {
 
             try {
                 const response = await fetch(
-                    `https://gebeta-delivery1.onrender.com/api/v1/foods/${foodId}`,
+                    `https://api.bahirandelivery.cloud/api/v1/foods/${foodId}`,
                     {
                         method: "GET",
                         headers: {
@@ -136,7 +136,7 @@ const MEditFood = ({ foodId }) => {
             payload.append("status", formData.status);
 
             const response = await fetch(
-                `https://gebeta-delivery1.onrender.com/api/v1/foods/${foodId}`,
+                `https://api.bahirandelivery.cloud/api/v1/foods/${foodId}`,
                 {
                     method: "PATCH",
                     headers: {

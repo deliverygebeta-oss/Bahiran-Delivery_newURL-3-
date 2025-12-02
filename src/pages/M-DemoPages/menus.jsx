@@ -89,7 +89,7 @@ const Menus = () => {
       };
 
       const res = await fetch(
-        `https://gebeta-delivery1.onrender.com/api/v1/food-menus/${editingMenu}`,
+        `https://api.bahirandelivery.cloud/api/v1/food-menus/${editingMenu}`,
         {
           method: "PATCH",
           headers: {
@@ -133,7 +133,7 @@ const Menus = () => {
       console.log(restaurantId)
 
       const res = await fetch(
-        "https://gebeta-delivery1.onrender.com/api/v1/food-menus",
+        "https://api.bahirandelivery.cloud/api/v1/food-menus",
         {
           method: "POST",
           headers: {

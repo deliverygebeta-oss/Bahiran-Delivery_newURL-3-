@@ -31,7 +31,7 @@ const EditUser = ({ id, phone }) => {
     const fetchUser = async () => {
       try {
         const res = await fetch(
-          `https://gebeta-delivery1.onrender.com/api/v1/users/getUser?id=${id}`,
+          `https://api.bahirandelivery.cloud/api/v1/users/getUser?id=${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -103,7 +103,7 @@ const EditUser = ({ id, phone }) => {
         }
       }
       const res = await fetch(
-        `https://gebeta-delivery1.onrender.com/api/v1/users/${id}`,
+        `https://api.bahirandelivery.cloud/api/v1/users/${id}`,
         {
           method: "PATCH",
           headers: {

@@ -72,7 +72,7 @@ const ProfileEditForm = () => {
       }
 
       const response = await axios.patch(
-        "https://gebeta-delivery1.onrender.com/api/v1/users/updateMe",
+        "https://api.bahirandelivery.cloud/api/v1/users/updateMe",
         form,
         {
           headers: {

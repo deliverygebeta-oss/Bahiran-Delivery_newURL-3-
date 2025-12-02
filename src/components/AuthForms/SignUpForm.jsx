@@ -99,7 +99,7 @@ const SignupForm = () => {
 
     try {
       const response = await axios.post(
-        "https://gebeta-delivery1.onrender.com/api/v1/users/sign",
+        "https://api.bahirandelivery.cloud/api/v1/users/sign",
         {
           first_name: formData.firstName,
           last_name: formData.lastName,

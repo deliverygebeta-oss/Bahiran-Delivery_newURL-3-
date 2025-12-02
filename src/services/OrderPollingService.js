@@ -10,7 +10,7 @@ class OrderPollingService {
   constructor() {
     this.interval = null;
     this.isRunning = false;
-    this.baseURL = "https://gebeta-delivery1.onrender.com/api/v1/orders/restaurant";
+    this.baseURL = "https://api.bahirandelivery.cloud/api/v1/orders/restaurant";
     this.lastFetchTime = 0;
     this.minFetchInterval = 3000;
     this.socket = null;

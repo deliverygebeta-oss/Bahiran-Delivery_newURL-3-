@@ -158,7 +158,7 @@ const AddUserForm = () => {
         }
 
         response = await axios.post(
-          "https://gebeta-delivery1.onrender.com/api/v1/users",
+          "https://api.bahirandelivery.cloud/api/v1/users",
           formDataPayload,
           {
             headers: {
@@ -177,7 +177,7 @@ const AddUserForm = () => {
         };
 
         response = await axios.post(
-          "https://gebeta-delivery1.onrender.com/api/v1/users",
+          "https://api.bahirandelivery.cloud/api/v1/users",
           payload,
           {
             headers: {

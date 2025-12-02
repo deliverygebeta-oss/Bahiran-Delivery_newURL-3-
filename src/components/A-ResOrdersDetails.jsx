@@ -12,7 +12,7 @@ const AResOrders = ({ restaurantId , restaurantName }) => {
             setError(null);
             try {
                 const res = await fetch(
-                    `https://gebeta-delivery1.onrender.com/api/v1/orders/restaurant/${restaurantId}/orders`,
+                    `https://api.bahirandelivery.cloud/api/v1/orders/restaurant/${restaurantId}/orders`,
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("token")}`,

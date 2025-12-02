@@ -116,7 +116,7 @@ const useUserStore = create(
         
         try {
           const res = await fetch(
-            `https://gebeta-delivery1.onrender.com/api/v1/food-menus?restaurantId=${restaurantId}`,
+            `https://api.bahirandelivery.cloud/api/v1/food-menus?restaurantId=${restaurantId}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -213,7 +213,7 @@ const useUserStore = create(
         
         try {
           const res = await fetch(
-            `https://gebeta-delivery1.onrender.com/api/v1/foods/by-menu/${menuId}`,
+            `https://api.bahirandelivery.cloud/api/v1/foods/by-menu/${menuId}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,

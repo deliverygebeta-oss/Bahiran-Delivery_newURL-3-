@@ -16,7 +16,7 @@ const ShowById = () => {
   const { getId, setGetId, phone } = useUserId();
 
   const { data, loading, errorMg } = UseFetch(
-    `https://gebeta-delivery1.onrender.com/api/v1/users/getUser?id=${getId}`,
+    `https://api.bahirandelivery.cloud/api/v1/users/getUser?id=${getId}`,
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -37,7 +37,7 @@ const ShowById = () => {
     if (!confirmDelete) return;
 
     try {
-      await fetch(`https://gebeta-delivery1.onrender.com/api/v1/users/${id}`, {
+      await fetch(`https://api.bahirandelivery.cloud/api/v1/users/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

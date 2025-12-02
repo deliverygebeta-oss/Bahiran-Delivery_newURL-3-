@@ -28,7 +28,7 @@ const useAdminDataStore = create(
         set({ usersLoading: true, usersError: null });
         try {
           const response = await fetch(
-            "https://gebeta-delivery1.onrender.com/api/v1/users",
+            "https://api.bahirandelivery.cloud/api/v1/users",
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -67,7 +67,7 @@ const useAdminDataStore = create(
         set({ restaurantsLoading: true, restaurantsError: null });
         try {
           const res = await fetch(
-            "https://gebeta-delivery1.onrender.com/api/v1/restaurants/admin/list",
+            "https://api.bahirandelivery.cloud/api/v1/restaurants/admin/list",
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -94,7 +94,7 @@ const useAdminDataStore = create(
       updateRestaurantStatus: async (id, newStatus) => {
         try {
           const res = await fetch(
-            `https://gebeta-delivery1.onrender.com/api/v1/restaurants/${id}`,
+            `https://api.bahirandelivery.cloud/api/v1/restaurants/${id}`,
             {
               method: newStatus === "Active" ? "POST" : "DELETE",
               headers: {
@@ -126,7 +126,7 @@ const useAdminDataStore = create(
       assignRestaurantManager: async (restaurantId, phone) => {
         try {
           const res = await fetch(
-            "https://gebeta-delivery1.onrender.com/api/v1/restaurants/assign-manager",
+            "https://api.bahirandelivery.cloud/api/v1/restaurants/assign-manager",
             {
               method: "POST",
               headers: {

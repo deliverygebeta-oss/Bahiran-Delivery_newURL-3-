@@ -79,7 +79,7 @@ const AddFood = ({ menuId }) => {
       payload.append("isFeatured", formData.isFeatured);
       payload.append("status", formData.status);
 
-      const response = await fetch("https://gebeta-delivery1.onrender.com/api/v1/foods", {
+      const response = await fetch("https://api.bahirandelivery.cloud/api/v1/foods", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

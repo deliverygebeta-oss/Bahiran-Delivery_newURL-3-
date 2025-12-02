@@ -27,7 +27,7 @@ const TimerToggle = () => {
       const formData = new FormData();
       formData.append("isOpenNow", String(!isOpen));
       const res = await fetch(
-        `https://gebeta-delivery1.onrender.com/api/v1/restaurants/${restaurantFromStore?.id}`,
+        `https://api.bahirandelivery.cloud/api/v1/restaurants/${restaurantFromStore?.id}`,
         {
           method: "PATCH",
           headers: {

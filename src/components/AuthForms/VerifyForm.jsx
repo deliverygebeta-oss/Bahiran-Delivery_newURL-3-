@@ -45,7 +45,7 @@ const VerifyForm = ({ phone }) => {
         try {
             setLoading(true);
             const res = await axios.post(
-                "https://gebeta-delivery1.onrender.com/api/v1/users/verifyOTP",
+                "https://api.bahirandelivery.cloud/api/v1/users/verifyOTP",
                 {
                     phone: phone,
                     code: code,

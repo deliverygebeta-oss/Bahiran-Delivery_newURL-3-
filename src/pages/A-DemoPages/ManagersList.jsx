@@ -6,7 +6,7 @@ import {Loading , InlineLoadingDots} from "../../components/Loading/Loading";
 const ManagerList = () => {
   const [managers, setManagers] = useState([]);
   const { data, loading, errorMg } = UseFetch(
-    "https://gebeta-delivery1.onrender.com/api/v1/users",
+    "https://api.bahirandelivery.cloud/api/v1/users",
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

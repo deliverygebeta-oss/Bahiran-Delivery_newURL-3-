@@ -32,7 +32,7 @@ const AddRestaurantsForm = () => {
       // if (!token) return;
       try {
         const response = await fetch(
-          "https://gebeta-delivery1.onrender.com/api/v1/users?role=Manager",
+          "https://api.bahirandelivery.cloud/api/v1/users?role=Manager",
           {
             method: "GET",
             headers: {
@@ -108,7 +108,7 @@ const AddRestaurantsForm = () => {
     }
     try {
       const response = await fetch(
-        "https://gebeta-delivery1.onrender.com/api/v1/restaurants",
+        "https://api.bahirandelivery.cloud/api/v1/restaurants",
         {
           method: "POST",
           headers: {

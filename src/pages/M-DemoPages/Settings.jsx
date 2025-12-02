@@ -39,7 +39,7 @@ const Settings = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        "https://gebeta-delivery1.onrender.com/api/v1/users/deleteMe",
+        "https://api.bahirandelivery.cloud/api/v1/users/deleteMe",
         {
           method: "DELETE",
           headers: {
