@@ -1,19 +1,19 @@
 .custom-shape-divider-bottom {
   position: absolute;
-  bottom: 0;
+  top: -190px;
   left: 0;
   width: 100%;
   overflow: hidden;
   line-height: 0;
   /* Only apply the vertical translation, not rotate twice */
-  transform: translateY(-156px) rotate(180deg);
+  transform:  rotate(180deg);
 }
   
   .custom-shape-divider-bottom svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 50%;
+    height: 200px;
 
   }
   
@@ -26,5 +26,7 @@
     .custom-shape-divider-bottom svg {
       width: calc(163% + 1.3px);
       height: 132px;
+      /* transform: translateY(-250px) rotate(180deg); */
+
     }
   }
