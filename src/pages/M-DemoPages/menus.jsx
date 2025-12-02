@@ -306,13 +306,13 @@ const Menus = () => {
         </>
       )}
       <div className="p-6 bg-[#f4f1e9] min-h-[calc(100vh-65px)] overflow-y-auto">
-        <div className="flex items-center justify-between mb-8 bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-[#e0cda9]">
+        <div className="flex items-center justify-between mb-8 bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-[#e0cda9] z-0">
           <div className="flex items-center gap-6">
             {selectedMenu && (
               <button
                 onClick={() => {
                   setSelectedMenu(null);
-                  setMenuFoods([]);
+                  // setMenuFoods([]);
                 }}
                 className="text-[#4b382a] hover:text-[#3d2e22] p-3 rounded-full bg-[#f8f6f0] hover:bg-[#e0cda9] transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
               >
@@ -330,7 +330,7 @@ const Menus = () => {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 z-0">
             <button
               className={`bg-gradient-to-r from-[#905618] to-[#b8691e] text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:from-[#3d2e22] hover:to-[#4b382a] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 motion-preset-focus font-semibold ${selectedMenu ? "" : "hidden"
                 }`}
@@ -417,7 +417,7 @@ const Menus = () => {
 
         {selectedMenu ? (
           <div>
-            <div className="flex items-center gap-16 mb-4">
+            <div className="flex items-center gap-16 mb-2 ">
 
               <h3 className="text-2xl font-semibold text-[#4b382a] mb- flex items-center gap-2">
                 <ChefHat size={24} />
@@ -439,71 +439,73 @@ const Menus = () => {
             {foodsLoading ? (
               <Loading />
             ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                {menuFoods.length > 0 ? (
-                  menuFoods.map((food) => (
-                    <div
-                      key={food._id}
-                      className="bg-white rounded-lg shadow-md border border-[#e0cda9] relative overflow-hidden"
-                      style={{
-                        backgroundImage: `url(${food.imageCover})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        minHeight: '280px'
-                      }}
-                    >
-                      {/* Overlay for better text readability */}
-                      <div className="absolute inset-0 bg-black bg-opacity-25 rounded-lg"></div>
+              <div className="max-h-[60vh] lg:overflow-y-auto pr-2 ">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                  {menuFoods.length > 0 ? (
+                    menuFoods.map((food) => (
+                      <div
+                        key={food._id}
+                        className="bg-white rounded-lg shadow-md border border-[#e0cda9] relative overflow-hidden"
+                        style={{
+                          backgroundImage: `url(${food.imageCover})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          minHeight: '280px'
+                        }}
+                      >
+                        {/* Overlay for better text readability */}
+                        <div className="absolute inset-0 bg-black bg-opacity-25 rounded-lg"></div>
 
-                      {/* Content overlay */}
-                      <div className="relative z-10 p-4 h-full flex flex-col justify-betweenx">
-                        <div className="  flex justify-between items-start mb-3">
-                          <div className="flex-1">
-                            <p className="text-lg font-bold text-white drop-shadow-lg">
-                              {food.foodName}
-                            </p>
-                            {food.ingredients && (
-                              <p className="text-gray-200 text-sm mt-1 drop-shadow-md">
-                                {food.ingredients}
+                        {/* Content overlay */}
+                        <div className="relative z-10 p-4 h-full flex flex-col justify-betweenx">
+                          <div className="  flex justify-between items-start mb-3">
+                            <div className="flex-1">
+                              <p className="text-lg font-bold text-white drop-shadow-lg">
+                                {food.foodName}
                               </p>
-                            )}
-                            <p className="text-white font-bold text-lg mt-2 drop-shadow-lg">
-                              {food.price} ETB
-                            </p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span
-                                className={`px-2 py-1 rounded-full text-xs font-medium ${food.status === "Available"
-                                  ? "bg-green-500 text-white"
-                                  : "bg-red-500 text-white"
-                                  }`}
-                              >
-                                {food.status}
-                              </span>
+                              {food.ingredients && (
+                                <p className="text-gray-200 text-sm mt-1 drop-shadow-md">
+                                  {food.ingredients}
+                                </p>
+                              )}
+                              <p className="text-white font-bold text-lg mt-2 drop-shadow-lg">
+                                {food.price} ETB
+                              </p>
+                              <div className="flex items-center gap-2 mt-1">
+                                <span
+                                  className={`px-2 py-1 rounded-full text-xs font-medium ${food.status === "Available"
+                                    ? "bg-green-500 text-white"
+                                    : "bg-red-500 text-white"
+                                    }`}
+                                >
+                                  {food.status}
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex gap-2 self-end absolute bottom-5 right-5">
-                            <button
-                              onClick={() => handleEditFood(food._id)}
-                              className="text-white hover:text-blue-300 p-2 bg-blue-600 bg-opacity-80 hover:bg-opacity-100 rounded-full transition-all duration-200"
-                            >
-                              <Edit size={16} />
-                            </button>
-                            {/* <button
-                              onClick={() => handleDeleteFood(food._id)}
-                              className="text-white hover:text-white hover:bg-red-500 p-1 text-xs bg-red-400 w-[90px] rounded-md px-2 py-1 transition-colors duration-200 font-medium shadow-sm"
-                            >
-                              Set to Unavailable
-                            </button> */}
+                            <div className="flex gap-2 self-end absolute bottom-5 right-5">
+                              <button
+                                onClick={() => handleEditFood(food._id)}
+                                className="text-white hover:text-blue-300 p-2 bg-blue-600 bg-opacity-80 hover:bg-opacity-100 rounded-full transition-all duration-200"
+                              >
+                                <Edit size={16} />
+                              </button>
+                              {/* <button
+                                onClick={() => handleDeleteFood(food._id)}
+                                className="text-white hover:text-white hover:bg-red-500 p-1 text-xs bg-red-400 w-[90px] rounded-md px-2 py-1 transition-colors duration-200 font-medium shadow-sm"
+                              >
+                                Set to Unavailable
+                              </button> */}
+                            </div>
                           </div>
                         </div>
                       </div>
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center py-8">
+                      <p className="text-gray-500">No foods found in this menu</p>
                     </div>
-                  ))
-                ) : (
-                  <div className="col-span-full text-center py-8">
-                    <p className="text-gray-500">No foods found in this menu</p>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             )}
           </div>

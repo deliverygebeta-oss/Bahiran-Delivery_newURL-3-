@@ -82,10 +82,15 @@ const LoginForm = () => {
         }
       );
       const data = await res.json();
-      console.log(data);
-      console.log(res.ok);
+      // console.log(data);
+      // console.log(res.ok);
 
       if (!res.ok) {
+        if(data.message === "Invalid credentials"){
+          setErrorMg("Incorrect phone number or password");
+        }else{
+          setErrorMg("Login failed check your internet connection");
+        }
         throw new Error(data.message || "Login failed check your internet connection");
       }
 
@@ -122,7 +127,7 @@ const LoginForm = () => {
       }
     } catch (error) {
       console.error("Login error:", error.message);
-      setErrorMg(error.message || "Incorrect phone number or password");
+      setErrorMg(error.message === "Invalid credentials" ? "Incorrect phone number or password" : error.message);
     } finally {
       setLoading(false);
     }

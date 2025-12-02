@@ -88,6 +88,10 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
         headers,
         body: JSON.stringify({ amount: parseFloat(amountInput) })
       });
+      if(amountInput > balance.amount){
+        setError('Insufficient balance');
+        return;
+      }
       if (!response.ok) throw new Error('Failed to process withdrawal');
       const result = await response.json();
       if (result.status === 'success') {
@@ -197,6 +201,7 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
               {loading ? 'Processing...' : 'Withdraw'}
             </button>
           </form>
+          
         </Card>
 
         {/* Transaction History Button and Table */}
@@ -230,9 +235,9 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-gray-200 ">
                   {transactions.map((tx, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
+                    <tr key={index} className="hover:bg-gray-50 ">
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {formatDate(tx.createdAt || tx.date || 'N/A')}
                       </td>

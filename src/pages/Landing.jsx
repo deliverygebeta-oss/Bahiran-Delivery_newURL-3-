@@ -216,7 +216,7 @@ const Landing = () => {
         <section id="explore" className="relative pt-20 pb-20  bg-[#f4f1e9] backdrop-blur-lg ">
         <WaveDivider />
           <div className="max-w-6xl mx-auto overflow-hidden flex flex-col items-center justify-center ">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 ${scrollY >= 340 ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
               Featured Restaurants
             </h2>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 ${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
@@ -281,7 +281,7 @@ const Landing = () => {
         <div className={`overflow-hidden  h-[400px] bg-[#f4f1e9] relative bg-cover bg-center hidden md:block w-${width} z-0 `} >
           {/* First Rotating Wheel */}
           <div
-            className=" border-separate border-2  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-left-[500px] md:-top-[130px] rounded-full z-10 "
+            className=" border-separate  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-left-[500px] md:-top-[130px] rounded-full z-10 "
             style={{ transform: `rotate(${rotate}deg)` }}
           >
             <div className="flex justify-between gap-x-44 z-50 ">
