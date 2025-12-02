@@ -36,7 +36,7 @@ const Chart = () => {
     }, [orders]);
     return ( 
         <>
-        <div className="w-[600px] h-[400px] md:w-[800px] md:h-[500px]  p-2 bg-white border border-[#e0cda9] sm:mt-10 rounded-lg font-noto">
+        <div className="w-[400px] h-[300px] lg:w-[800px] lg:h-[500px]  p-2 bg-white border border-[#e0cda9] sm:mt-10 rounded-lg font-noto">
       <h2 style={{ textAlign: 'center' }}>Website Analytics Dashboard</h2>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart

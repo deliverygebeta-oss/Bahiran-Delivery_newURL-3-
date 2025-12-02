@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowDownToDot } from 'lucide-react';
 
 const AllFoods = () => {
-    const URL = "https://gebeta-delivery1.onrender.com/api/v1/foods";
+    const URL = "https://api.bahirandelivery.cloud//api/v1/foods";
     const [foods, setFoods] = useState([]);
     const [loading, setLoading] = useState(true);
     const scrollRef = useRef(null);
@@ -16,6 +16,7 @@ const AllFoods = () => {
                 const response = await fetch(URL);
                 const data = await response.json();
                 setFoods(data.data || []);
+                console.log(data.data);
             } catch (error) {
                 console.error('Error fetching foods:', error);
             } finally {
@@ -25,7 +26,7 @@ const AllFoods = () => {
 
         fetchFoods();
     }, []);
-
+// console.log(foods);
     // Center the scroll on the middle list once foods load
     useEffect(() => {
         if (!scrollRef.current || foods.length === 0) return;
@@ -57,7 +58,7 @@ const AllFoods = () => {
 
         const el = scrollRef.current;
         let rafId;
-        const speed = 0.6;
+        const speed = 0.2;
         const cardWidth = 280;
         const gap = 24;
         const cycleWidth = foods.length * cardWidth + (foods.length - 1) * gap * 20;

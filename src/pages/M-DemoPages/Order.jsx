@@ -172,8 +172,8 @@ const ManagerOrders = () => {
       )}
 
       {!ordersLoading && !ordersError && (
-        <div className="overflow-y-auto h-[69%] w-[80%] scrollbar-hide scroll-smooth fixed p-2 ">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
+        <div className="overflow-y-auto h-[79%]  w-[90%] lg:h-[69%] lg:w-[80%] scrollbar-hide scroll-smooth fixed p-2 ">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3  ">
           {filteredOrders
             .sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))
             .map((order) => (
@@ -184,7 +184,7 @@ const ManagerOrders = () => {
                 }`}
               >
                 <div onClick={() => toggleExpand(order.orderId)}>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center ">
                     <div>
                       <h2 className="text-xl font-semibold text-[#4b2e2e]">
                         {order.userName}
