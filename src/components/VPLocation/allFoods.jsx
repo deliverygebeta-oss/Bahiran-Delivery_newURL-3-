@@ -58,7 +58,7 @@ const AllFoods = () => {
 
         const el = scrollRef.current;
         let rafId;
-        const speed = 0.2;
+        const speed = 0.6;
         const cardWidth = 280;
         const gap = 24;
         const cycleWidth = foods.length * cardWidth + (foods.length - 1) * gap * 20;
