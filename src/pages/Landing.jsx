@@ -210,18 +210,11 @@ const Landing = () => {
           </form> */}
 
         </section>
-        <WaveDivider />
 
-        {/* Scroll Indicator */}
-        {/* <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
-        <Link to="#explore" aria-label="Explore restaurants">
-          <ArrowDownToDot color="white" size={50} className="animate-bounce" />
-        </Link>
-      </div> */}
-
-
+   
         {/* Explore Section */}
         <section id="explore" className="relative pt-20 pb-20  bg-[#f4f1e9] backdrop-blur-lg ">
+        <WaveDivider />
           <div className="max-w-6xl mx-auto overflow-hidden flex flex-col items-center justify-center ">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
               Featured Restaurants
