@@ -78,15 +78,6 @@
   background-size: cover;
   height: 100vh;
 }
-.bg-parallax-3 {
-  background-image: url("/fewa.png");
-  background-attachment: fixed;
-  background-position: center;
-  height: 100vh;
-  
-  background-size: cover;
-  height: 100vh;
-}
 .boxes {
   --size: 32px;
   --duration: 800ms;
