@@ -285,7 +285,7 @@ const Landing = () => {
         <ParallaxBackground backgroundImage="src/assets/images/p.png" />
 
         {/* Rotating Images Container */}
-        <div className={`overflow-hidden border-2 h-[400px] bg-[#f4f1e9] relative bg-cover bg-center hidden md:block w-${width} z-0 `} >
+        <div className={`overflow-hidden  h-[400px] bg-[#f4f1e9] relative bg-cover bg-center hidden md:block w-${width} z-0 `} >
           {/* First Rotating Wheel */}
           <div
             className=" border-separate border-2  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-left-[500px] md:-top-[130px] rounded-full z-10 "
@@ -322,7 +322,7 @@ const Landing = () => {
           </div>
           {/* Second Rotating Wheel (reversed order for effect) */}
           <div
-            className=" border-separate border-2  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-right-[500px] md:-top-[130px] rounded-full z-10 "
+            className=" border-separate  p-5 m-5 gap-44 flex flex-col origin-center transition-transform duration-1000 bg-[#d2b48c]  absolute md:-right-[500px] md:-top-[130px] rounded-full z-10 "
             style={{ transform: `rotate(${rotate}deg)` }}
           >
             <div className="flex justify-between gap-44">
