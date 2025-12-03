@@ -118,7 +118,7 @@ const Landing = () => {
   // Restaurant card data
   const restaurants = [
     {
-      image: "https://placehold.co/600x400/FFF/000?text=Restaurant+1",
+      image: "https://placehold.co/600x400/FFF/000?text=Restaurant+3",
       name: "Gourmet Grills",
       description: "A modern twist on classic comfort food.",
       rating: 4.8,
@@ -134,7 +134,7 @@ const Landing = () => {
       index: 1,
     },
     {
-      image: "https://placehold.co/600x400/FFF/000?text=Restaurant+3",
+      image: "https://placehold.co/600x400/FFF/000?text=Restaurant+1",
       name: "The Vegan Corner",
       description: "Fresh, plant-based meals crafted with care.",
       rating: 4.9,
@@ -231,7 +231,7 @@ const Landing = () => {
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 ${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
               <div className={getCardClasses(0) + `${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[121%] motion-translate-y-in-[-47%]" : "opacity-0"} border border-[#905618] transition-opacity duration-300`}>
                 <img
-                  src={foodImages[0]}
+                  src={foodImages[2]}
                   alt="Placeholder for Gourmet Grills"
                   className="w-full h-48 object-cover rounded-lg"
                 />
@@ -263,7 +263,7 @@ const Landing = () => {
               </div>
               <div className={getCardClasses(2) + `${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "motion-translate-x-in-[121%] motion-translate-y-in-[-47%]" : "opacity-0"} transition-opacity duration-300 border border-[#905618]`}>
                 <img
-                  src={foodImages[2]}
+                  src={foodImages[0]}
                   alt="Placeholder for The Vegan Corner"
                   className="w-full h-48 object-cover rounded-lg"
                 />
