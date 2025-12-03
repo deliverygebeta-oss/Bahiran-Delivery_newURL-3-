@@ -127,8 +127,9 @@ const AllFoods = () => {
                 >
                     {duplicatedFoods.map((food, i) => {
                         const realIndex = i % foods.length;
+                        const itemKey = `${food._id ?? "food"}-${realIndex}-${i}`;
                         return (
-                            <div key={`${food._id}-${realIndex}`} className="flex-shrink-0 w-[280px]">
+                            <div key={itemKey} className="flex-shrink-0 w-[280px]">
                                 <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-[#e0cda9] to-[#f1d59b]  hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                                     <div className="bg-white rounded-2xl overflow-hidden h-full flex flex-col">
 

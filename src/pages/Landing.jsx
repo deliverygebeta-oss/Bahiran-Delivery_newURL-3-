@@ -45,6 +45,15 @@ const Landing = () => {
   const [rotate, setRotate] = useState(45);
   const { width, height, scrollY } = useViewport(); // Removed unused scrollX
   console.log(scrollY)
+  // Enable smooth scrolling for in-page navigation while this component is mounted
+  useEffect(() => {
+    const html = document.documentElement;
+    const originalBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = "smooth";
+    return () => {
+      html.style.scrollBehavior = originalBehavior;
+    };
+  }, []);
   // Rotation effect: Increment angle every 5 seconds
   useEffect(() => {
     let currentAngle = 45;
@@ -216,7 +225,7 @@ const Landing = () => {
         <section id="explore" className="relative pt-20 pb-20  bg-[#f4f1e9] backdrop-blur-lg ">
         <WaveDivider />
           <div className="max-w-6xl mx-auto overflow-hidden flex flex-col items-center justify-center ">
-            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 ${scrollY >= 340 ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
+            <h2 className={` text-3xl md:text-6xl font-bold text-center mb-12 bg-gradient-to-r from-[#905618] via-[#b8691e] to-[#905618] bg-clip-text text-transparent ${scrollY >= 340 ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
               Featured Restaurants
             </h2>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 ${scrollY >= CARDS_APPEARANCE_THRESHOLD ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
