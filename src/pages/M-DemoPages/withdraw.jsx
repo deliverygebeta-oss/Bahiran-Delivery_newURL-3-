@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../../components/Cards/Cards';
-import { AlertTriangle , Eye, EyeOff} from 'lucide-react';
+import { AlertTriangle, Eye, EyeOff } from 'lucide-react';
+import telebirrLogo from '/Telebirr.png';
+import cbeBirrLogo from '/cbebirr.png';
+import chapa from "/chapa.avif"
 
 const BalancePage = ({ requesterType = 'Restaurant' }) => {
   const [balance, setBalance] = useState(null);
@@ -11,12 +14,37 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
   const [message, setMessage] = useState('');
   const [amountInput, setAmountInput] = useState('');
   const [historyInfo, setHistoryInfo] = useState({ requesterType, totalBalance: null });
-
+  const [bankId, setBankId] = useState('');
   const baseUrl = 'https://api.bahirandelivery.cloud/';
   const token = localStorage.getItem('token');
   const headers = {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json'
+  };
+  const SESSION_STORAGE_KEY = 'bahiran-withdraw-init';
+  const BANK_LOGOS = {
+    telebirr: telebirrLogo,
+    cbebirr: cbeBirrLogo,
+  };
+
+  const getCachedBalance = () => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const cached = window.sessionStorage.getItem(SESSION_STORAGE_KEY);
+      return cached ? JSON.parse(cached) : null;
+    } catch (cacheErr) {
+      console.warn('Failed to parse cached balance data', cacheErr);
+      return null;
+    }
+  };
+
+  const cacheBalance = (data) => {
+    if (typeof window === 'undefined') return;
+    try {
+      window.sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(data));
+    } catch (cacheErr) {
+      console.warn('Failed to cache balance data', cacheErr);
+    }
   };
 
   const parseDecimal = (value) => {
@@ -29,14 +57,21 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
   };
 
   // Fetch balance
-  const fetchBalance = async () => {
+  const fetchBalance = async (forceRefresh = false) => {
+    if (!forceRefresh) {
+      const cachedData = getCachedBalance();
+      if (cachedData) {
+        setBalance(cachedData);
+        return;
+      }
+    }
     try {
-      const response = await fetch(`${baseUrl}/api/v1/balance`, { headers });
+      const response = await fetch(`${baseUrl}api/v1/balance/initialize-withdraw`, { headers });
       if (!response.ok) throw new Error('Failed to fetch balance');
       const result = await response.json();
-      console.log(result);
       if (result.status === 'success') {
         setBalance(result.data);
+        cacheBalance(result.data);
       }
     } catch (err) {
       setError(err.message);
@@ -58,6 +93,7 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
       });
       if (!response.ok) throw new Error('Failed to fetch transaction history');
       const result = await response.json();
+      console.log(result);
       const list = Array.isArray(result?.transactions) ? result.transactions : Array.isArray(result?.data) ? result.data : [];
       if (Array.isArray(list)) {
         const sortedTransactions = list.sort((a, b) => new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date));
@@ -80,15 +116,21 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
       setError('Please enter a valid amount.');
       return;
     }
+    const payload = {
+      amount: parseFloat(amountInput),
+      bankId: bankId
+    }
     try {
       setLoading(true);
       setError(null);
       const response = await fetch(`${baseUrl}/api/v1/balance/withdraw`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ amount: parseFloat(amountInput) })
+        body: JSON.stringify(payload)
       });
-      if(amountInput > balance.amount){
+      // console.log(response);
+      // console.log(payload);
+      if (amountInput > balance.balance) {
         setError('Insufficient balance');
         return;
       }
@@ -98,7 +140,7 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
         setMessage('Withdrawal request submitted successfully.');
         setAmountInput('');
         // Refetch balance instead of reloading
-        await fetchBalance();
+        await fetchBalance(true);
       }
     } catch (err) {
       setError(err.message);
@@ -111,6 +153,15 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
     return parseDecimal(amountObj).toLocaleString();
   };
 
+  const banks = balance?.banks || [];
+  const getBankLogo = (bank) => {
+    const slug = bank?.slug?.toLowerCase();
+    if (slug && BANK_LOGOS[slug]) {
+      return BANK_LOGOS[slug];
+    }
+    return null;
+  };
+ 
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -143,26 +194,26 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
   return (
     <div className="p-6 pt-3 bg-[#f9f5f0] font-noto h-[calc(100vh-65px)] overflow-y-auto ">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-xl font-semibold mb-4">Balance Dashboard - {requesterType}</h1>
-
+        {/* <h1 className="text-xl font-semibold mb-4">Balance Dashboard - {requesterType}</h1> */}
+        
         {/* Balance Card */}
         {balance && (
           <Card >
             <div className="mb-6">
 
-            <div className="flex justify-between items-center mb-4 gap-16">
-              <h2 className="text-lg font-semibold">Current Balance</h2>
-              <button
-                onClick={() => setShowBalance(!showBalance)}
-                className="text-xs text-gray-600 hover:text-gray-800"
-              >
-                {/* {showBalance ? 'Hide' : 'Show'} */}
-                {showBalance ?<Eye />  :<EyeOff /> }
-              </button>
-            </div>
-            <div className="text-2xl font-bold">
-              {showBalance ? '**** **** **** ' :  `${parseDecimal(balance.amount).toLocaleString()} ${balance.currency}`}
-            </div>
+              <div className="flex justify-between items-center mb-4 gap-16">
+                <h2 className="text-lg font-semibold">Current Balance</h2>
+                <button
+                  onClick={() => setShowBalance(!showBalance)}
+                  className="text-xs text-gray-600 hover:text-gray-800"
+                >
+                  {/* {showBalance ? 'Hide' : 'Show'} */}
+                  {showBalance ? <Eye /> : <EyeOff />}
+                </button>
+              </div>
+              <div className="text-2xl font-bold">
+                {showBalance ? '**** **** **** ' : `${parseDecimal(balance.balance).toLocaleString()} ${balance.currency || 'ETB'}`}
+              </div>
             </div>
           </Card>
         )}
@@ -182,26 +233,56 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
         {/* Withdraw Form */}
         <Card className="mb-6">
           <h2 className="text-lg font-semibold mb-4">Request Withdrawal</h2>
-          <form onSubmit={handleWithdraw} className="flex gap-3">
-            <input
-              type="number"
-              placeholder="Enter amount"
-              value={amountInput}
-              onChange={(e) => setAmountInput(e.target.value)}
-              className="flex-1 px-3 py-2 border border-[#e0cda9] rounded-md focus:outline-none focus:ring-2 focus:ring-[#deb770]"
-              min="0"
-              step="0.01"
-              disabled={loading}
-            />
-            <button
-              type="submit"
-              disabled={loading || !amountInput}
-              className="px-5 py-2 bg-[#e0cda9] text-primary rounded-md hover:bg-[#deb770] disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Processing...' : 'Withdraw'}
-            </button>
+          <form onSubmit={handleWithdraw} className="flex flex-col gap-3">
+            <div className="flex  gap-2 lg:w-[500px] items-center">
+
+              <input
+                type="number"
+                placeholder="Enter amount"
+                value={amountInput}
+                onChange={(e) => setAmountInput(e.target.value)}
+                className="flex-1 px-3 py-2 border border-[#e0cda9] rounded-md focus:outline-none focus:ring-2 focus:ring-[#deb770]"
+                min="0"
+                step="0.01"
+                disabled={loading}
+              />
+              <button
+                type="submit"
+                disabled={loading || !amountInput}
+                className="px-5 py-2 bg-[#e0cda9] text-primary rounded-md hover:bg-[#deb770] disabled:opacity-50 disabled:cursor-not-allowed w-fit flex items-center justify-center gap-2"
+              >
+                {loading ? 'Processing...' : 'Withdraw'} 
+              </button><img src={chapa} alt="bank logo" className="h-28 w-auto " />
+            </div>
+             <div className="flex flex-wrap gap-6">
+               {banks.map((bank) => {
+                 const isSelected = String(bankId) === String(bank.id);
+                 const logo = getBankLogo(bank) || bank.logo;
+                 return (
+                   <button
+                     type="button"
+                     key={bank.id}
+                     onClick={() => setBankId(String(bank.id))}
+                     className={`flex items-center gap-3  rounded-lg hover:scale-95  transition-all active:scale-100 ${
+                       isSelected
+                         ? 'shadow-xl scale-110 shadow-black/20 border-2 border-[#deb770] '
+                         : 'border-gray-200 hover:border-[#deb770]'
+                     }`}
+                   >
+                     {logo ? (
+                       <img src={logo} alt={`${bank.name} logo`} className="h-12 w-auto rounded-lg bg-[#ffffff]  " />
+                     ) : (
+                       <span className="h-8 w-8 flex items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500">
+                         {bank.name?.[0] || '?'}
+                       </span>
+                     )}
+                     {/* <span className="text-sm font-medium text-gray-700">{bank.name}</span> */}
+                   </button>
+                 );
+               })}
+             </div>
           </form>
-          
+
         </Card>
 
         {/* Transaction History Button and Table */}
