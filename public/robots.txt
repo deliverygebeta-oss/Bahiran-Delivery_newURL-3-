@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /managerDashboard
+Disallow: /adminDashboard
+Disallow: /otp
+Disallow: /verify
+Disallow: /forgot-password
+Disallow: /firstLogin
+
+ 
+Sitemap: https://bahirandelivery.com/sitemap.xml
