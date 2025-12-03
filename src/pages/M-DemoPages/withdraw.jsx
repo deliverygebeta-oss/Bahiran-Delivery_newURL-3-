@@ -141,7 +141,7 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
   }
 
   return (
-    <div className="p-6 pt-3 bg-[#f4f1e9] font-noto h-[calc(100vh-65px)] overflow-y-auto ">
+    <div className="p-6 pt-3 bg-[#f9f5f0] font-noto h-[calc(100vh-65px)] overflow-y-auto ">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-xl font-semibold mb-4">Balance Dashboard - {requesterType}</h1>
 

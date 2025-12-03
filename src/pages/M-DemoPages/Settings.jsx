@@ -68,14 +68,13 @@ const Settings = () => {
 
   return (
     <>
-    <div className="motion-preset-focus motion-duration-300 bg-[#f4f1e9] pb-[4px]">
-      <div className="bg-[#f4f1e9] translate-x-12 rounded w-fit ">
+    <div className="motion-preset-focus motion-duration-300 bg-[#f9f5f0] pb-[4px]">
+      <div className="bg-[#f9f5f0] translate-x-12 rounded w-fit ">
         <button
           onClick={()=>{setShowEditForm("Edit Restaurant")}}
-          className={`px-3 text-sm py-2 text-white font-semibold shadow-md bg-amber-900 transform-all duration-300 ${showEditForm === "Edit Restaurant" ? "bg-[#b55d1f] -translate-y-1" : ""} 
+          className={`px-3 text-sm py-2 text-white font-semibold shadow-md bg-amber-900 transform-all duration-300 ${sessionStorage.getItem("user-data")?.role === "Manager" ? "" : "hidden"} ${showEditForm === "Edit Restaurant" ? "bg-[#b55d1f] -translate-y-1" : ""} 
           ` 
         }
-        // ${sessionStorage.getItem("user-data")?.role === "manager" ? "" : "hidden"}
         >
           Restaurant settings
         </button>
@@ -86,11 +85,11 @@ const Settings = () => {
           Account settings
         </button>
       </div>
-{/* && sessionStorage.getItem("user-data")?.role === "manager"  */}
-      {showEditForm === "Edit Restaurant" ? (
+
+      {showEditForm === "Edit Restaurant" && sessionStorage.getItem("user-data")?.role === "Manager"  ? (
         <EditRestaurantForm />
       ) : (
-        <div className="max-w-screen mx-auto p-4 space-y-6 h-[calc(100vh-106px)]  bg-[#f4f1e9] flex justify-center items-center">
+        <div className="max-w-screen mx-auto p-4 space-y-6 h-[calc(100vh-106px)]  bg-[#f9f5f0] flex justify-center items-center">
           <div>
             <h1 className="text-3xl font-bold mb-4">Account Settings</h1>
 

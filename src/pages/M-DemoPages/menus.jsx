@@ -305,7 +305,7 @@ const Menus = () => {
           </div>
         </>
       )}
-      <div className="p-6 bg-[#f4f1e9] min-h-[calc(100vh-65px)] overflow-y-auto">
+      <div className="p-6 bg-[#f9f5f0] min-h-[calc(100vh-65px)] overflow-y-auto">
         <div className="flex items-center justify-between mb-8 bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-[#e0cda9] z-0">
           <div className="flex items-center gap-6">
             {selectedMenu && (
