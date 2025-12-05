@@ -175,8 +175,9 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
   const getStatusBadge = (status) => {
     const statusMap = {
       'PENDING': 'bg-yellow-100 text-yellow-800',
-      'APPROVED': 'bg-green-100 text-green-800',
-      'REJECTED': 'bg-red-100 text-red-800'
+      'APPROVED': 'bg-blue-100 text-green-800',
+      'REJECTED': 'bg-red-100 text-gray-800',
+      'SUCCESS': 'bg-green-100 text-gray-800'
     };
     return `inline-flex px-2 py-1 text-xs font-semibold rounded-full ${statusMap[status] || 'bg-gray-100 text-gray-800'}`;
   };
@@ -324,7 +325,7 @@ const BalancePage = ({ requesterType = 'Restaurant' }) => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{tx.type || 'N/A'}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {tx.amount != null ? `${formatAmount(tx.amount)} ${tx.currency || 'ETB'}` : 'N/A'}
+                        {tx.netAmount != null ? `${formatAmount(tx.netAmount)} ${tx.currency || 'ETB'}` : 'N/A'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={getStatusBadge(tx.status || 'N/A')}>
