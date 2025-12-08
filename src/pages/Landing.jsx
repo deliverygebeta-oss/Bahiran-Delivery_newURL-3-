@@ -279,6 +279,7 @@ const Landing = () => {
               </div>
             </div>
           </div>
+          {/* <FeaturedRestaurants/> */}
           <AnimatedCircles />
 
         </section>
@@ -354,7 +355,7 @@ const Landing = () => {
           </div>
 
         </div>
-        <ParallaxBackground backgroundImage="src/assets/images/p.png" />
+        <ParallaxBackground  />
 
         {/* About / Why Gebeታ Section */}
         <section id="about" className="relative py-16 bg-[#f4f1e9] overflow-hidden z-40">

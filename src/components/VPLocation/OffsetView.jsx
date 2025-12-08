@@ -17,8 +17,8 @@ export function ParallaxBackground({ backgroundImage }) {
         // backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "contain",
         // backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed", // optional: smooth parallax effect
-        backgroundPosition: ` ${offset * 0.1}px`, // Moves slower than scroll
+        backgroundAttachment: "center", // optional: smooth parallax effect
+        backgroundPosition: ` ${offset * 0.3}px`, // Moves slower than scroll
       }}
       className="relative bg-telet"
     >

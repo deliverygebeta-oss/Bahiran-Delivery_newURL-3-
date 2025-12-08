@@ -14,7 +14,7 @@ const UsersList = ({ role }) => {
     usersError,
     fetchUsers,
   } = useAdminDataStore();
-
+ console.log(users)
   useEffect(() => {
     fetchUsers();
   }, [refreshUsers, fetchUsers]);

@@ -300,7 +300,7 @@ const Analytics = () => {
                             </div>
                             {/* Vertical line */}
                             <div className="absolute left-12 top-0 bottom-0 border-l border-[#8B4513] opacity-30"></div>
-                            <div className="ml-16 flex items-end justify-between gap-4 h-40 flex-1">
+                            <div className="ml-16 flex items-end justify-between gap-4 h-40 flex-1 ">
                                 {analytics.monthlyData.map((data, index) => (
                                     <div key={index} className="relative group">
                                         {/* Tooltip */}

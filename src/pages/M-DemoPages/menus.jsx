@@ -103,6 +103,7 @@ const Menus = () => {
 
 
       const data = await res.json();
+      // console.log(data)
       if (res.ok) {
         // Update menu in store
         updateMenu(editingMenu, payload);
