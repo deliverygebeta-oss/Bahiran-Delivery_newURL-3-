@@ -154,7 +154,7 @@ const WithdrawalHistory = () => {
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
                                     {groupedData.map(({ userId, latest, rest }) => {
-                                        const amount = parseDecimal(latest.amount).toLocaleString();
+                                        const amount = parseDecimal(rest.netAmount).toLocaleString();
                                         const fee = parseDecimal(latest.fee).toLocaleString();
                                         const isRestaurant = String(requesterType).toLowerCase() === 'restaurant';
                                         const restaurantName = latest?.restaurantId?.name || '';
@@ -222,7 +222,7 @@ const WithdrawalHistory = () => {
                                                 </tr>
                                                 {expanded[userId] &&
                                                     rest.map((item) => {
-                                                        const amountR = parseDecimal(item.amount).toLocaleString();
+                                                        const amountR = parseDecimal(item.netAmount).toLocaleString();
                                                         const feeR = parseDecimal(item.fee).toLocaleString();
                                                         const dateR = new Date(item.createdAt).toLocaleDateString('en-US', {
                                                             year: 'numeric',

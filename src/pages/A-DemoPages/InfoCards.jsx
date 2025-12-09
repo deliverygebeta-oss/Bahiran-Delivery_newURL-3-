@@ -65,7 +65,9 @@ const AInfoCards = () => {
     }, []);
 
     const stats = useMemo(() => {
-        const roleCounts = (users || []).reduce((acc, user) => {
+        const list = Array.isArray(users) ? users : [];
+
+        const roleCounts = list.reduce((acc, user) => {
             const role = String(user?.role || "").toLowerCase();
             if (role.includes("admin")) acc.admin += 1;
             else if (role.includes("manager")) acc.manager += 1;
@@ -74,6 +76,19 @@ const AInfoCards = () => {
             else acc.other += 1;
             return acc;
         }, { admin: 0, manager: 0, delivery: 0, customer: 0, other: 0 });
+
+        const now = new Date();
+        const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        const newUsersThisMonth = list.reduce((count, user) => {
+            const d = user?.createdAt || user?.created_at || user?.registrationDate;
+            if (!d) return count;
+            const created = new Date(d);
+            if (!Number.isNaN(created.getTime()) && created >= monthStart && created <= now) {
+                return count + 1;
+            }
+            return count;
+        }, 0);
 
         return {
             roleItems: [
@@ -85,6 +100,7 @@ const AInfoCards = () => {
             usersByRoleText: `${roleCounts.admin} / ${roleCounts.manager} / ${roleCounts.delivery} / ${roleCounts.customer}`,
             // usersByRoleLegend: "admin / manager / delivery / customer",
             restaurantsCount: (restaurants || []).length,
+            newUsersThisMonth,
         };
     }, [users, restaurants]);
 
@@ -97,9 +113,9 @@ const AInfoCards = () => {
         },
         {
             label: "Growth",
-            num: "",
+            num: stats.newUsersThisMonth?.toLocaleString?.() || stats.newUsersThisMonth || 0,
             icon: <TrendingUp size={18} />,
-            progress: "Coming soon",
+            progress: "New users this month",
         },
         {
             label: "Orders",
