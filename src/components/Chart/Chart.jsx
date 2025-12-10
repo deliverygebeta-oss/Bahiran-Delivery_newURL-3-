@@ -55,7 +55,7 @@ const Chart = () => {
           <Legend />
           
           <Line 
-            type="monotone" 
+            type="bump" 
             dataKey="revenue" 
             name="Revenue"
             stroke="#000000" 

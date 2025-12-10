@@ -18,23 +18,33 @@ const GlobalNotifications = () => {
       cleanupNotifications();
     }, 3000);
 
-    return () => clearInterval(cleanupInterval);
+    return () => clearTimeout(cleanupTimeout);
   }, [cleanupNotifications]);
 
-  // Auto-hide new order alert after 5 seconds
+  // Auto-hide new order alert after 5 seconds and play sound only
+  // when the browser considers the page "user activated" to avoid
+  // NotAllowedError from autoplay policies.
   useEffect(() => {
-    if (newOrderAlert) {
-      // Play bell sound for new order
-      const audio = new Audio(bellSound);
-      audio.play().catch(error => {
-        console.log('Could not play notification sound:', error);
-      });
-      
-      const timer = setTimeout(() => {
-        setNewOrderAlert(false);
-      }, 5000);
-      return () => clearTimeout(timer);
+    if (!newOrderAlert) return;
+
+    // Try to play sound only if there has been some user interaction
+    try {
+      if (typeof window !== 'undefined' && navigator?.userActivation?.hasBeenActive) {
+        const audio = new Audio(bellSound);
+        audio.play().catch((error) => {
+          console.log('Could not play notification sound:', error);
+        });
+      } else {
+        console.log('Skipping notification sound because there is no prior user interaction.');
+      }
+    } catch (error) {
+      console.log('Notification sound error:', error);
     }
+
+    const timer = setTimeout(() => {
+      setNewOrderAlert(false);
+    }, 5000);
+    return () => clearTimeout(timer);
   }, [newOrderAlert, setNewOrderAlert]);
 
   const getNotificationIcon = (type) => {
