@@ -66,13 +66,18 @@ const Settings = () => {
     }
   };
 
+
+  const userData = JSON.parse(sessionStorage.getItem("user-data"))
+  const role = userData.state.user.role
+  console.log(role)
+
   return (
     <>
     <div className="motion-preset-focus motion-duration-300 bg-[#f9f5f0] pb-[4px]">
       <div className="bg-[#f9f5f0] translate-x-12 rounded w-fit ">
         <button
           onClick={()=>{setShowEditForm("Edit Restaurant")}}
-          className={`px-3 text-sm py-2 text-white font-semibold shadow-md bg-amber-900 transform-all duration-300 ${sessionStorage.getItem("user-data")?.role === "Manager" ? "" : "hidden"} ${showEditForm === "Edit Restaurant" ? "bg-[#b55d1f] -translate-y-1" : ""} 
+          className={`px-3 text-sm py-2 text-white font-semibold shadow-md bg-amber-900 transform-all duration-300 ${role === "Manager" ? "" : "hidden"} ${showEditForm === "Edit Restaurant" ? "bg-[#b55d1f] -translate-y-1" : ""} 
           ` 
         }
         >
