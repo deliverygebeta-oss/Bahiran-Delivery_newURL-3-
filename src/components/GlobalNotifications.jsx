@@ -21,30 +21,45 @@ const GlobalNotifications = () => {
     return () => clearTimeout(cleanupTimeout);
   }, [cleanupNotifications]);
 
-  // Auto-hide new order alert after 5 seconds and play sound only
-  // when the browser considers the page "user activated" to avoid
-  // NotAllowedError from autoplay policies.
+  // Play notification sound when there's a new order alert
   useEffect(() => {
     if (!newOrderAlert) return;
 
-    // Try to play sound only if there has been some user interaction
-    try {
-      if (typeof window !== 'undefined' && navigator?.userActivation?.hasBeenActive) {
-        const audio = new Audio(bellSound);
-        audio.play().catch((error) => {
-          console.log('Could not play notification sound:', error);
-        });
-      } else {
-        console.log('Skipping notification sound because there is no prior user interaction.');
+    // Create audio element
+    const audio = new Audio(bellSound);
+    audio.volume = 0.5; // Set volume to 50%
+    
+    // Try to play the sound
+    const playSound = async () => {
+      try {
+        await audio.play();
+      } catch (err) {
+        console.log('Autoplay prevented, adding user interaction listener');
+        // If autoplay was prevented, wait for user interaction
+        const handleFirstInteraction = () => {
+          audio.play().catch(e => console.log('Error playing sound after interaction:', e));
+          document.removeEventListener('click', handleFirstInteraction);
+          document.removeEventListener('keydown', handleFirstInteraction);
+        };
+        
+        document.addEventListener('click', handleFirstInteraction, { once: true });
+        document.addEventListener('keydown', handleFirstInteraction, { once: true });
       }
-    } catch (error) {
-      console.log('Notification sound error:', error);
-    }
+    };
 
+    playSound();
+
+    // Auto-hide notification after 5 seconds
     const timer = setTimeout(() => {
       setNewOrderAlert(false);
     }, 5000);
-    return () => clearTimeout(timer);
+    
+    // Cleanup
+    return () => {
+      clearTimeout(timer);
+      audio.pause();
+      audio.currentTime = 0;
+    };
   }, [newOrderAlert, setNewOrderAlert]);
 
   const getNotificationIcon = (type) => {

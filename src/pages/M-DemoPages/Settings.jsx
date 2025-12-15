@@ -91,7 +91,7 @@ const Settings = () => {
         </button>
       </div>
 
-      {showEditForm === "Edit Restaurant" && sessionStorage.getItem("user-data")?.role === "Manager"  ? (
+      {showEditForm === "Edit Restaurant" && role === "Manager"  ? (
         <EditRestaurantForm />
       ) : (
         <div className="max-w-screen mx-auto p-4 space-y-6 h-[calc(100vh-106px)]  bg-[#f9f5f0] flex justify-center items-center">

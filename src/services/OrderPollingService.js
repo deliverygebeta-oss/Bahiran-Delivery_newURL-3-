@@ -63,11 +63,40 @@ class OrderPollingService {
 
     this.socket.on("newOrder", (orderData) => {
       console.log("🔔 New order received via socket:", orderData);
+      
+      // Play notification sound
+      const playNotificationSound = () => {
+        try {
+          const audio = new Audio(bellSound);
+          audio.volume = 0.5; // Set volume to 50%
+          const playPromise = audio.play();
+          
+          // Handle autoplay restrictions
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.log('Autoplay prevented, adding user interaction listener');
+              const handleFirstInteraction = () => {
+                audio.play().catch(e => console.log('Error playing sound:', e));
+                document.removeEventListener('click', handleFirstInteraction);
+                document.removeEventListener('keydown', handleFirstInteraction);
+              };
+              
+              document.addEventListener('click', handleFirstInteraction, { once: true });
+              document.addEventListener('keydown', handleFirstInteraction, { once: true });
+            });
+          }
+        } catch (error) {
+          console.error('Error playing notification sound:', error);
+        }
+      };
+      
       // Immediately surface the notification using the payload from the socket
       if (orderData) {
         this.handleNewOrder(orderData);
+        playNotificationSound(); // Play sound when new order is received
         console.log("Notification sent to the user(###################");
       }
+      
       // Trigger the callback in the React hook
       if (this.onNewOrderCallback) {
         this.onNewOrderCallback();
