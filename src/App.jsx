@@ -22,36 +22,40 @@ function App() {
   const { user } = useUserStore();
   const userRole = user?.role;
 
-  // Prefer user from Zustand store; fallback to sessionStorage if needed
+  // Determine if this is the actual first login
   const storedUserData = sessionStorage.getItem("user-data");
   const sessionUser = storedUserData ? JSON.parse(storedUserData) : null;
-  const firstLogin = user?.firstLogin ?? sessionUser?.state?.user?.firstLogin ?? false;
+  const isActualFirstLogin = user?.firstLogin ?? sessionUser?.state?.user?.firstLogin ?? false;
 
-  // Remove the interval entirely (it was causing leaks and unwanted behavior)
-  // If you need it for testing, use useEffect with proper cleanup:
-  /*
+  // State to control whether the FirstLogin modal is visible
   const [showFirstLogin, setShowFirstLogin] = useState(false);
 
   useEffect(() => {
-    if (userRole === "Manager" && firstLogin) {
+    // Show immediately if it's the real first login and user is Manager
+    if (userRole === "Manager" && isActualFirstLogin) {
       setShowFirstLogin(true);
     }
 
-    // Example: for testing only
+    // For testing/demo: Re-show the modal every 25 minutes (1500000 ms)
     const interval = setInterval(() => {
-      setShowFirstLogin(true);
-    }, 500000); // ~8.3 minutes
+      if (userRole === "Manager") {
+        console.log("25 minutes passed — showing FirstLogin modal again for demo");
+        setShowFirstLogin(true);
+      }
+    }, 1500); // 25 minutes
 
-    return () => clearInterval(interval); // Cleanup on unmount/re-render
-  }, [userRole, firstLogin]);
-  */
+    // Cleanup interval when component unmounts or dependencies change
+    return () => clearInterval(interval);
+  }, [userRole, isActualFirstLogin]);
 
   useOrderFetcher();
 
   return (
     <>
-      {/* Show FirstLogin modal only for managers on their first login */}
-      {userRole === "Manager" && firstLogin && <FirstLogin />}
+      {/* Show FirstLogin modal: either on real first login OR every 25 minutes (for demo) */}
+      {userRole === "Manager" && showFirstLogin && (
+        <FirstLogin onClose={() => setShowFirstLogin(false)} />
+      )}
 
       <GlobalNotifications />
 
