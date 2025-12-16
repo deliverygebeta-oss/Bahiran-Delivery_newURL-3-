@@ -26,6 +26,7 @@ function App() {
   const storedUserData = sessionStorage.getItem("user-data");
   const sessionUser = storedUserData ? JSON.parse(storedUserData) : null;
   const isActualFirstLogin = user?.firstLogin ?? sessionUser?.state?.user?.firstLogin ?? false;
+  console.log(isActualFirstLogin)
 
   // State to control whether the FirstLogin modal is visible
   const [showFirstLogin, setShowFirstLogin] = useState(false);
@@ -53,7 +54,7 @@ function App() {
   return (
     <>
       {/* Show FirstLogin modal: either on real first login OR every 25 minutes (for demo) */}
-      {userRole === "Manager" && showFirstLogin && (
+      {userRole === "Manager" && showFirstLogin && isActualFirstLogin && (
         <FirstLogin onClose={() => setShowFirstLogin(false)} />
       )}
 
