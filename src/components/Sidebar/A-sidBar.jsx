@@ -39,7 +39,7 @@ const AdminSidebar = () => {
      
       <div className="text-xl font-bold pb-8 flex items-center justify-center  space-x-1 border-b-[0.5px] border-[#e0cda9] mb-8 ">
       <img src="https://res.cloudinary.com/drinuph9d/image/upload/v1761897257/food_images/food_1761897256388_logo.png" alt="Bahiran Logo" className="w-8 h-8 rounded-lg bg-[#8f4504] object-contain"/>
-        <span>ባህrun Admin</span>
+        <span>Bahiran Admin</span>
       </div>
 
       <nav className="space-y-3 " >

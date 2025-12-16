@@ -171,7 +171,7 @@ const Landing = () => {
                 alt="Logo"
                 className="w-10 h-10 object-cover rounded"
               />
-              ባህrun
+              Bahiran
             </Link>
             <div className="flex gap-4">
               <button
@@ -456,7 +456,7 @@ const Landing = () => {
                     alt="ባህRun logo"
                     className="w-10 h-10 object-cover rounded"
                   />
-                  <span className="font-logo text-2xl text-white">ባህrun</span>
+                  <span className="font-logo text-2xl text-white">Bahiran</span>
                 </Link>
                 <p className="mt-4 text-sm text-gray-400">
                   Discover local flavors, top-rated restaurants, and quick reorders — all in one place.
@@ -535,7 +535,7 @@ const Landing = () => {
             </div>
           </div>
           <div className="border-t border-white/10 py-4 text-center text-xs text-gray-400">
-            © {new Date().getFullYear()} ባህrun. All rights reserved.
+            © {new Date().getFullYear()} Bahiran. All rights reserved.
           </div>
         </footer>
       </div>
